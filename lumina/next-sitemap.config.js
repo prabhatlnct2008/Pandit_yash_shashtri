@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://pandityashshastri.com',
+  siteUrl: process.env.SITE_URL || 'https://pandityashshastri.com',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   changefreq: 'weekly',
