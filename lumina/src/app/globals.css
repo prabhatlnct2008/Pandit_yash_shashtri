@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+/* Custom Design Tokens for Pandit Yash Shastri */
+@theme inline {
+  /* Color Palette - Spiritual + Premium */
+  --color-saffron: #7A1E1E;
+  --color-saffron-light: #9A3E3E;
+  --color-saffron-dark: #5A0E0E;
+
+  --color-gold: #C9A24D;
+  --color-gold-light: #D9B26D;
+  --color-gold-dark: #A9822D;
+
+  --color-ivory: #FFF9F2;
+  --color-ivory-dark: #F5EDE5;
+
+  --color-charcoal: #1C1C1C;
+  --color-muted: #E8DCC8;
+  --color-accent: #1E7F43;
+  --color-accent-light: #2A9D55;
+
+  /* Background and foreground */
+  --color-background: var(--color-ivory);
+  --color-foreground: var(--color-charcoal);
+
+  /* Typography */
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+
+  /* Font sizes with line heights */
+  --text-h1-desktop: 3.25rem;
+  --text-h1-mobile: 2.25rem;
+  --text-h2: 2rem;
+  --text-h3: 1.375rem;
+  --text-body: 1.125rem;
+  --text-small: 0.875rem;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-charcoal);
+  font-family: var(--font-body);
+  line-height: 1.7;
+}
+
+/* Typography utilities */
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Smooth focus states for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-saffron);
+  outline-offset: 2px;
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-charcoal);
+}
+
+/* Custom scrollbar for premium feel */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-ivory-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-muted);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-gentle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-pulse-gentle {
+  animation: pulse-gentle 2s ease-in-out infinite;
+}
