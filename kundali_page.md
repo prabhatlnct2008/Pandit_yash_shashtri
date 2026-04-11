@@ -1,4 +1,4 @@
-Kundali and Astrology, Clearly Explained: A Practical Long-Form Guide for Beginners
+Kundali and Astrology, Clearly Explained: A Practical Long-Form Guide for Beginners.
 
 Introduction
 
