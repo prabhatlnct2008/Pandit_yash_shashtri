@@ -69,6 +69,14 @@ export function Footer() {
                     </Link>
                   </li>
                 ))}
+                <li>
+                  <Link
+                    href="/kundali-guide"
+                    className="text-ivory/80 hover:text-gold transition-colors"
+                  >
+                    Kundali Guide
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>
