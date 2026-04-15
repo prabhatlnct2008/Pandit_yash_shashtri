@@ -77,6 +77,14 @@ export function Footer() {
                     Kundali Guide
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href="/vedic-astrology-guide"
+                    className="text-ivory/80 hover:text-gold transition-colors"
+                  >
+                    Vedic Astrology Guide
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>
