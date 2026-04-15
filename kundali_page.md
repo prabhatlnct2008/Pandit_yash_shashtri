@@ -1,6 +1,6 @@
 Kundali and Astrology, Clearly Explained: A Practical Long-Form Guide for Beginners.
 
-Introduction
+Introduction  
 
 A lot of people in India meet astrology through a practical doorway, not a philosophical one. A family asks for a kundali before marriage. Someone is told they are Manglik. Another person hears that “Saturn is strong” or that a difficult dasha is running. The vocabulary arrives before the understanding.
 
