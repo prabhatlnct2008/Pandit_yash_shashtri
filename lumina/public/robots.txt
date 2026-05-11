@@ -14,7 +14,7 @@ User-agent: Bingbot
 Allow: /
 
 # Host
-Host: https://pandityashshastri.com
+Host: https://www.panditjeehomepuja.in
 
 # Sitemaps
-Sitemap: https://pandityashshastri.com/sitemap.xml
+Sitemap: https://www.panditjeehomepuja.in/sitemap.xml

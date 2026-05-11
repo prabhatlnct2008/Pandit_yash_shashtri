@@ -2,7 +2,7 @@ export const SITE_CONFIG = {
   name: "Pandit Yash Shastri",
   description:
     "Trusted Pandit and Astrologer in South Delhi & Gurgaon. Quick astrology consultation, home puja, muhurat guidance & Vedic rituals.",
-  url: "https://pandityashshastri.com",
+  url: "https://www.panditjeehomepuja.in",
   googleBusinessProfile: "https://share.google/7zlaYzGkyVLNZYd7w",
   temple: {
     name: "Shiv Shakti Mandir",
