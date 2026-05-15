@@ -109,9 +109,16 @@ export default async function LocationPage({ params }: PageProps) {
               <h1 className="font-heading text-4xl md:text-5xl font-bold text-charcoal mb-6">
                 {location.h1}
               </h1>
-              <p className="text-lg text-charcoal/70 leading-relaxed mb-8">
-                {location.content}
-              </p>
+              <div className="mb-8 space-y-4">
+                {location.content.map((paragraph, idx) => (
+                  <p
+                    key={idx}
+                    className="text-lg text-charcoal/70 leading-relaxed"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <LinkButton
                   href={getWhatsAppLink(
@@ -223,9 +230,48 @@ export default async function LocationPage({ params }: PageProps) {
             >
               Serving {location.fullName}
             </h2>
-            <div className="prose prose-lg mx-auto text-charcoal/80">
+            <div className="prose prose-lg mx-auto text-charcoal/80 space-y-4">
               <p className="text-lg leading-relaxed">{location.description}</p>
+              {location.localContext?.map((paragraph, idx) => (
+                <p key={idx} className="text-lg leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
             </div>
+
+            {location.nearbyAreas && location.nearbyAreas.length > 0 && (
+              <div className="mt-10 p-6 bg-white rounded-xl border border-muted">
+                <h3 className="font-heading text-lg font-semibold text-charcoal mb-3">
+                  Pandit Ji Also Serves Nearby Areas
+                </h3>
+                <p className="text-charcoal/80 leading-relaxed">
+                  In addition to {location.name}, Pandit Yash Shastri regularly
+                  works with{" "}
+                  {location.nearbyAreas.map((area, idx) => {
+                    const target = getLocationBySlug(area.slug);
+                    if (!target) return null;
+                    const isLast = idx === location.nearbyAreas.length - 1;
+                    return (
+                      <span key={area.slug}>
+                        <Link
+                          href={`/pandit/${area.slug}`}
+                          className="text-saffron hover:underline font-medium"
+                        >
+                          {area.anchor}
+                        </Link>
+                        {location.nearbyAreas.length > 1 && !isLast
+                          ? location.nearbyAreas.length === 2
+                            ? " and "
+                            : idx === location.nearbyAreas.length - 2
+                            ? ", and "
+                            : ", "
+                          : "."}
+                      </span>
+                    );
+                  })}
+                </p>
+              </div>
+            )}
 
             {location.nearbyLandmarks.length > 0 && (
               <div className="mt-8 p-6 bg-white rounded-xl">
@@ -349,7 +395,7 @@ export default async function LocationPage({ params }: PageProps) {
                   href={`/pandit/${loc.slug}`}
                   className="px-4 py-2 bg-ivory hover:bg-ivory-dark rounded-full text-sm text-charcoal transition-colors"
                 >
-                  Pandit in {loc.name}
+                  {loc.pillAnchor}
                 </Link>
               ))}
             </div>
