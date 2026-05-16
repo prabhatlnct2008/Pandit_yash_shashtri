@@ -3,6 +3,7 @@ import { ArrowDown, MapPin, Phone, ShieldCheck, Sparkles, Star } from "lucide-re
 import { LinkButton } from "@/components/ui/Button";
 import { Disclaimer } from "@/components/sections/Disclaimer";
 import { MandirPlanner } from "@/components/planner/MandirPlanner";
+import { PlannerModules } from "@/components/planner/PlannerModules";
 import { WebPageSchema, BreadcrumbSchema } from "@/components/seo/JsonLd";
 import { SITE_CONFIG } from "@/lib/constants";
 import { getWhatsAppLink, getPhoneLink } from "@/lib/utils";
@@ -152,13 +153,13 @@ export default function HomeMandirPujaPlannerPage() {
           <MandirPlanner />
         </section>
 
-        {/* Modules placeholder — Phase 2 */}
+        {/* Phase 2 — SEO modules below the tool */}
         <section
           id="learn-more"
-          className="py-16 bg-white"
           aria-labelledby="modules-heading"
+          className="bg-white"
         >
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 md:pt-20">
             <h2
               id="modules-heading"
               className="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-4"
@@ -166,12 +167,12 @@ export default function HomeMandirPujaPlannerPage() {
               Learn more about home mandir, vastu &amp; Shiv puja
             </h2>
             <p className="text-charcoal/70 leading-relaxed">
-              Detailed guidance on choosing a mandir for your home, mandir
-              vastu direction, Shivling setup, daily Shiv puja, and famous
-              Shiv mandirs in Delhi will appear here as we publish each
-              section.
+              Twelve practical guides covering everything from choosing a
+              mandir to performing daily Shiv puja — written with Pandit Ji&apos;s
+              guidance and softened where individual family traditions vary.
             </p>
           </div>
+          <PlannerModules />
         </section>
 
         {/* Disclaimer — mandatory on this page */}
