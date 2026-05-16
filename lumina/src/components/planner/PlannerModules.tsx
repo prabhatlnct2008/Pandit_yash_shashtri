@@ -11,6 +11,7 @@ import {
 import { LinkButton } from "@/components/ui/Button";
 import { SITE_CONFIG } from "@/lib/constants";
 import { getWhatsAppLink } from "@/lib/utils";
+import { WA_TEMPLATES } from "@/lib/whatsappTemplates";
 
 const WHATSAPP_PHONE = SITE_CONFIG.contact.primaryPhone;
 
@@ -140,10 +141,7 @@ function Module1FindPandit() {
       intro="Booking a pandit for home puja isn't just about availability — it's about finding someone whose vidhi you trust, who speaks your language, who arrives on time, and who explains rather than mystifies."
       cta={{
         label: "Book Pandit Ji on WhatsApp",
-        href: getWhatsAppLink(
-          WHATSAPP_PHONE,
-          "Namaste Pandit Ji, I'd like to book a home puja. Please share availability."
-        ),
+        href: getWhatsAppLink(WHATSAPP_PHONE, WA_TEMPLATES.homePuja()),
         external: true,
       }}
     >
@@ -485,7 +483,7 @@ function Module5Shivling() {
 function Module6ShivPuja() {
   const whatsappBookRudrabhishek = getWhatsAppLink(
     WHATSAPP_PHONE,
-    "Namaste Pandit Ji, I would like to book a Rudrabhishek at home. Please share availability and the samagri list."
+    WA_TEMPLATES.bookRudrabhishek()
   );
   return (
     <ModuleShell
@@ -558,10 +556,7 @@ function Module7ShivShakti() {
       pendingReviewNote="This is doctrinal content. Pandit Ji is reviewing the framing for accuracy."
       cta={{
         label: "Connect with Pandit Ji at Shiv Shakti Mandir",
-        href: getWhatsAppLink(
-          WHATSAPP_PHONE,
-          "Namaste Pandit Ji, I'd like to understand Shiv Shakti worship for our home mandir. Please guide me."
-        ),
+        href: getWhatsAppLink(WHATSAPP_PHONE, WA_TEMPLATES.shivShakti()),
         external: true,
       }}
     >
@@ -715,10 +710,7 @@ function Module8FamousMandirs() {
       intro="Delhi has a long Shiv-worship tradition. Some temples are centuries old, others are modern. Here's a curated list of well-known Shiv mandirs in Delhi — useful for darshan, festival visits, or arranging in-temple pujas."
       cta={{
         label: "Want darshan + puja arranged? Ask Pandit Ji",
-        href: getWhatsAppLink(
-          WHATSAPP_PHONE,
-          "Namaste Pandit Ji, I'd like to arrange darshan and a small puja at one of the Delhi Shiv mandirs. Please guide me."
-        ),
+        href: getWhatsAppLink(WHATSAPP_PHONE, WA_TEMPLATES.darshan()),
         external: true,
       }}
     >
@@ -752,10 +744,7 @@ function Module9ShivShaktiMandir() {
       pendingReviewNote="Pandit Ji is verifying timings, festival schedule, and access details below."
       cta={{
         label: "Visit or schedule a home puja",
-        href: getWhatsAppLink(
-          WHATSAPP_PHONE,
-          "Namaste Pandit Ji, I'd like to visit Shiv Shakti Mandir or schedule a home puja. Please share details."
-        ),
+        href: getWhatsAppLink(WHATSAPP_PHONE, WA_TEMPLATES.visitTemple()),
         external: true,
       }}
     >
@@ -939,10 +928,7 @@ function Module12PujaChecklist() {
       intro="The day of a home puja is much smoother when preparation starts a day or two in advance. Here's a practical checklist that works for most pujas."
       cta={{
         label: "Talk to Pandit Ji about your puja",
-        href: getWhatsAppLink(
-          WHATSAPP_PHONE,
-          "Namaste Pandit Ji, I'm planning a home puja and would like to discuss preparation."
-        ),
+        href: getWhatsAppLink(WHATSAPP_PHONE, WA_TEMPLATES.homePuja()),
         external: true,
       }}
     >

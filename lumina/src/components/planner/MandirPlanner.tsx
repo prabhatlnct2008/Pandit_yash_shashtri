@@ -20,6 +20,7 @@ import { LinkButton } from "@/components/ui/Button";
 import { SITE_CONFIG } from "@/lib/constants";
 import { getWhatsAppLink } from "@/lib/utils";
 import { composeResult, type DirectionTier, type PlannerResult } from "@/lib/plannerLogic";
+import { SamagriPdfGate } from "./SamagriPdfGate";
 import type {
   AnswerKey,
   Deity,
@@ -597,13 +598,12 @@ function ResultCard({ answers }: { answers: PlannerAnswers }) {
             ))}
           </ul>
         )}
-        {showSamagri && (
-          <p className="mt-3 text-xs text-charcoal/60">
-            A downloadable PDF version will be available shortly. For now,
-            Pandit Ji can confirm the exact list for your puja over WhatsApp.
-          </p>
-        )}
       </section>
+
+      {/* PDF lead-gate */}
+      <div className="mb-4">
+        <SamagriPdfGate answers={answers} pujaName={result.puja.primary.name} />
+      </div>
 
       {/* Location note */}
       <section className="p-4 rounded-xl bg-ivory border border-muted mb-6 text-sm">

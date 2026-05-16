@@ -6,6 +6,7 @@ import type {
   PlannerAnswers,
   Space,
 } from "@/components/planner/types";
+import { WA_TEMPLATES } from "./whatsappTemplates";
 
 export type DirectionTier =
   | "ideal"
@@ -59,27 +60,6 @@ const DIRECTION_LABEL: Record<Direction, string> = {
   S: "South",
   SE: "South-East",
   "not-sure": "Not yet identified",
-};
-
-const DEITY_LABEL: Record<Deity, string> = {
-  shiv: "Shiv ji",
-  "shiv-parivar": "Shiv Parivar",
-  "ram-darbar": "Ram Darbar",
-  krishna: "Krishna ji",
-  devi: "Devi",
-  multiple: "multiple deities",
-  "help-decide": "your chosen family deity",
-};
-
-const OCCASION_LABEL: Record<Occasion, string> = {
-  "griha-pravesh": "Griha Pravesh",
-  daily: "daily worship",
-  "specific-puja": "a specific upcoming puja",
-  birthday: "a family member's birthday",
-  mundan: "Mundan ceremony",
-  wedding: "wedding preparation",
-  health: "health and peace",
-  "setup-properly": "setting up your mandir properly",
 };
 
 const LOCATION_LABEL: Record<LocationKey, string> = {
@@ -418,30 +398,7 @@ function buildWhatsAppMessage(
   answers: PlannerAnswers,
   result: Omit<PlannerResult, "whatsappMessage">
 ): string {
-  const directionText = answers.direction
-    ? DIRECTION_LABEL[answers.direction]
-    : "not yet decided";
-  const deityText = answers.deity ? DEITY_LABEL[answers.deity] : "not yet decided";
-  const occasionText = answers.occasion
-    ? OCCASION_LABEL[answers.occasion]
-    : "general setup";
-  const locationText = answers.location
-    ? LOCATION_LABEL[answers.location]
-    : "South Delhi / Gurgaon";
-
-  const lines = [
-    "Namaste Pandit Ji,",
-    "",
-    "I used the Home Mandir & Puja Planner and got this recommendation:",
-    `• Mandir direction: ${directionText}`,
-    `• Main deity: ${deityText}`,
-    `• Reason: ${occasionText}`,
-    `• Recommended puja: ${result.puja.primary.name}`,
-    `• Location: ${locationText}`,
-    "",
-    "Please guide me on the next steps.",
-  ];
-  return lines.join("\n");
+  return WA_TEMPLATES.fromPlanner(answers, result.puja.primary.name);
 }
 
 export function composeResult(answers: PlannerAnswers): PlannerResult {

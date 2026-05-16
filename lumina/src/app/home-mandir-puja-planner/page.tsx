@@ -3,6 +3,7 @@ import { ArrowDown, MapPin, Phone, ShieldCheck, Sparkles, Star } from "lucide-re
 import { LinkButton } from "@/components/ui/Button";
 import { Disclaimer } from "@/components/sections/Disclaimer";
 import { FAQSection } from "@/components/sections/FAQSection";
+import { ExitIntentModal } from "@/components/planner/ExitIntentModal";
 import { MandirPlanner } from "@/components/planner/MandirPlanner";
 import { PlannerModules } from "@/components/planner/PlannerModules";
 import {
@@ -19,6 +20,7 @@ import {
   PLANNER_SERVICE_SCHEMAS,
 } from "@/lib/plannerSeo";
 import { getWhatsAppLink, getPhoneLink } from "@/lib/utils";
+import { WA_TEMPLATES } from "@/lib/whatsappTemplates";
 
 const PAGE_URL = `${SITE_CONFIG.url}/home-mandir-puja-planner`;
 
@@ -57,7 +59,7 @@ export const metadata: Metadata = {
 };
 
 export default function HomeMandirPujaPlannerPage() {
-  const whatsappPrefill = `Namaste Pandit Ji, I'd like to plan my home mandir and puja setup. Please guide me.`;
+  const whatsappPrefill = WA_TEMPLATES.hero();
 
   return (
     <>
@@ -252,6 +254,9 @@ export default function HomeMandirPujaPlannerPage() {
           </div>
         </section>
       </article>
+
+      {/* Exit-intent (desktop, first visit only) */}
+      <ExitIntentModal />
     </>
   );
 }
