@@ -82,14 +82,23 @@ export function Hero() {
             </LinkButton>
           </div>
 
-          {/* Secondary CTA */}
-          <Link
-            href="/ask-pandit-ji"
-            className="inline-flex items-center gap-2 text-saffron hover:text-saffron-dark font-medium transition-colors"
-          >
-            <HelpCircle className="w-5 h-5" />
-            <span>Ask Pandit Ji (Free)</span>
-          </Link>
+          {/* Secondary CTAs */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+            <Link
+              href="/ask-pandit-ji"
+              className="inline-flex items-center gap-2 text-saffron hover:text-saffron-dark font-medium transition-colors"
+            >
+              <HelpCircle className="w-5 h-5" />
+              <span>Ask Pandit Ji (Free)</span>
+            </Link>
+            <Link
+              href="/home-mandir-puja-planner"
+              className="inline-flex items-center gap-2 text-saffron hover:text-saffron-dark font-medium transition-colors"
+            >
+              <Sparkles className="w-5 h-5" />
+              <span>Try our Mandir &amp; Puja Planner</span>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

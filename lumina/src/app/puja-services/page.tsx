@@ -154,6 +154,32 @@ export default function PujaServicesPage() {
           </div>
         </section>
 
+        {/* Planner cross-link */}
+        <section className="py-8 bg-ivory border-b border-muted">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Link
+              href="/home-mandir-puja-planner"
+              className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-xl bg-white border border-muted hover:border-saffron transition-colors"
+            >
+              <div className="flex items-start gap-3">
+                <Sparkles className="w-5 h-5 text-saffron flex-shrink-0 mt-1" />
+                <div>
+                  <p className="font-heading text-base font-semibold text-charcoal">
+                    Not sure which puja? Try the Mandir &amp; Puja Planner
+                  </p>
+                  <p className="text-sm text-charcoal/70 mt-1">
+                    Six quick taps → personalised mandir setup and puja
+                    recommendation in 90 seconds.
+                  </p>
+                </div>
+              </div>
+              <span className="inline-flex items-center gap-1 text-sm font-medium text-saffron whitespace-nowrap">
+                Open planner <ArrowRight className="w-4 h-4" />
+              </span>
+            </Link>
+          </div>
+        </section>
+
         {/* All Puja Services */}
         <section className="py-16 md:py-24 bg-white" aria-labelledby="all-services">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

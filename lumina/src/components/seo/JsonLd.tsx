@@ -188,3 +188,40 @@ export function WebPageSchema({ title, description, url }: WebPageSchemaProps) {
 
   return <JsonLd data={schema} />;
 }
+
+interface HowToStep {
+  name: string;
+  text: string;
+  url?: string;
+}
+
+interface HowToSchemaProps {
+  name: string;
+  description: string;
+  totalTime?: string; // ISO 8601 duration, e.g., "PT2M" for 2 minutes
+  steps: HowToStep[];
+}
+
+export function HowToSchema({
+  name,
+  description,
+  totalTime,
+  steps,
+}: HowToSchemaProps) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name,
+    description,
+    ...(totalTime ? { totalTime } : {}),
+    step: steps.map((step, idx) => ({
+      "@type": "HowToStep",
+      position: idx + 1,
+      name: step.name,
+      text: step.text,
+      ...(step.url ? { url: step.url } : {}),
+    })),
+  };
+
+  return <JsonLd data={schema} />;
+}

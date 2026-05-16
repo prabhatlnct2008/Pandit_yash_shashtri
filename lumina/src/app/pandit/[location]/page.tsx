@@ -334,6 +334,32 @@ export default async function LocationPage({ params }: PageProps) {
           </div>
         </section>
 
+        {/* Planner cross-link */}
+        <section className="py-10 bg-white border-y border-muted">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Link
+              href="/home-mandir-puja-planner"
+              className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-xl bg-ivory border border-muted hover:border-saffron transition-colors"
+            >
+              <div className="flex items-start gap-3">
+                <Sparkles className="w-5 h-5 text-saffron flex-shrink-0 mt-1" />
+                <div>
+                  <p className="font-heading text-base font-semibold text-charcoal">
+                    Planning a home mandir in {location.name}?
+                  </p>
+                  <p className="text-sm text-charcoal/70 mt-1">
+                    Six taps → vastu direction, recommended puja, samagri
+                    checklist. Built for South Delhi &amp; Gurgaon homes.
+                  </p>
+                </div>
+              </div>
+              <span className="inline-flex items-center gap-1 text-sm font-medium text-saffron whitespace-nowrap">
+                Open planner <ArrowRight className="w-4 h-4" />
+              </span>
+            </Link>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         {location.faqs.length > 0 && (
           <FAQSection

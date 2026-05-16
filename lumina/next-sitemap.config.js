@@ -39,6 +39,9 @@ module.exports = {
     } else if (path === '/ask-pandit-ji') {
       priority = 0.8;
       changefreq = 'daily'; // Q&A content updates frequently
+    } else if (path === '/home-mandir-puja-planner') {
+      priority = 0.9;
+      changefreq = 'weekly';
     } else if (path === '/kundali-guide' || path === '/vedic-astrology-guide') {
       priority = 0.8;
       changefreq = 'monthly';

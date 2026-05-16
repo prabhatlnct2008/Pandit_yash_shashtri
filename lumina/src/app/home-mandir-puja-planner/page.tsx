@@ -2,10 +2,22 @@ import { Metadata } from "next";
 import { ArrowDown, MapPin, Phone, ShieldCheck, Sparkles, Star } from "lucide-react";
 import { LinkButton } from "@/components/ui/Button";
 import { Disclaimer } from "@/components/sections/Disclaimer";
+import { FAQSection } from "@/components/sections/FAQSection";
 import { MandirPlanner } from "@/components/planner/MandirPlanner";
 import { PlannerModules } from "@/components/planner/PlannerModules";
-import { WebPageSchema, BreadcrumbSchema } from "@/components/seo/JsonLd";
+import {
+  BreadcrumbSchema,
+  FAQSchema,
+  HowToSchema,
+  ServiceSchema,
+  WebPageSchema,
+} from "@/components/seo/JsonLd";
 import { SITE_CONFIG } from "@/lib/constants";
+import {
+  PLANNER_FAQS,
+  PLANNER_HOWTO_STEPS,
+  PLANNER_SERVICE_SCHEMAS,
+} from "@/lib/plannerSeo";
 import { getWhatsAppLink, getPhoneLink } from "@/lib/utils";
 
 const PAGE_URL = `${SITE_CONFIG.url}/home-mandir-puja-planner`;
@@ -60,6 +72,23 @@ export default function HomeMandirPujaPlannerPage() {
           { name: "Home Mandir & Puja Planner", url: PAGE_URL },
         ]}
       />
+      <HowToSchema
+        name="How to set up a home mandir as per Vastu in 6 steps"
+        description="A practical, 6-step process for planning a home mandir — direction, deity, space, occasion, location, and pandit review — guided by Pandit Yash Shastri at Shiv Shakti Mandir, Mehrauli."
+        totalTime="PT2M"
+        steps={PLANNER_HOWTO_STEPS.map((step) => ({
+          ...step,
+          url: `${PAGE_URL}#planner`,
+        }))}
+      />
+      <FAQSchema faqs={PLANNER_FAQS} />
+      {PLANNER_SERVICE_SCHEMAS.map((service) => (
+        <ServiceSchema
+          key={service.name}
+          serviceName={service.name}
+          serviceDescription={service.description}
+        />
+      ))}
 
       <article>
         {/* Hero */}
@@ -175,7 +204,14 @@ export default function HomeMandirPujaPlannerPage() {
           <PlannerModules />
         </section>
 
-        {/* Disclaimer — mandatory on this page */}
+        {/* FAQ — also feeds FAQPage schema */}
+        <FAQSection
+          title="Frequently asked questions"
+          subtitle="Common questions about home mandirs, Shiv puja, and how Pandit Ji works"
+          faqs={PLANNER_FAQS}
+        />
+
+        {/* Disclaimer — mandatory on this page, placed above footer per wireframe */}
         <Disclaimer className="bg-ivory-dark" />
 
         {/* Footer CTA */}
