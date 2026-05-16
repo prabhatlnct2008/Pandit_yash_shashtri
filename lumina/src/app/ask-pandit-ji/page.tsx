@@ -131,6 +131,32 @@ export default function AskPanditJiPage() {
           </div>
         </header>
 
+        {/* Planner cross-link */}
+        <section className="py-8 bg-ivory border-b border-muted">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Link
+              href="/home-mandir-puja-planner"
+              className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-xl bg-white border border-muted hover:border-saffron transition-colors"
+            >
+              <div className="flex items-start gap-3">
+                <Sparkles className="w-5 h-5 text-saffron flex-shrink-0 mt-1" />
+                <div>
+                  <p className="font-heading text-base font-semibold text-charcoal">
+                    Setting up a home mandir? Use our Planner first
+                  </p>
+                  <p className="text-sm text-charcoal/70 mt-1">
+                    Six taps → personalised vastu direction, puja, and samagri
+                    plan. Then ask Pandit Ji to confirm the specifics.
+                  </p>
+                </div>
+              </div>
+              <span className="inline-flex items-center gap-1 text-sm font-medium text-saffron whitespace-nowrap">
+                Open planner <ArrowRight className="w-4 h-4" />
+              </span>
+            </Link>
+          </div>
+        </section>
+
         {/* Question Categories */}
         <section className="py-12 bg-white border-b border-muted">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
