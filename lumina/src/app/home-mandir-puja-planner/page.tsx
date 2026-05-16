@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { ArrowDown, MapPin, Phone, ShieldCheck, Sparkles, Star } from "lucide-react";
 import { LinkButton } from "@/components/ui/Button";
 import { Disclaimer } from "@/components/sections/Disclaimer";
+import { MandirPlanner } from "@/components/planner/MandirPlanner";
 import { WebPageSchema, BreadcrumbSchema } from "@/components/seo/JsonLd";
 import { SITE_CONFIG } from "@/lib/constants";
 import { getWhatsAppLink, getPhoneLink } from "@/lib/utils";
@@ -131,43 +132,24 @@ export default function HomeMandirPujaPlannerPage() {
           </div>
         </section>
 
-        {/* Planner placeholder — replaced in Step 1.2 */}
+        {/* The Planner */}
         <section
           id="planner"
           className="py-16 md:py-24 bg-ivory"
           aria-labelledby="planner-heading"
         >
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-10">
             <h2
               id="planner-heading"
-              className="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-4"
+              className="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-3"
             >
               Plan your mandir setup in 90 seconds
             </h2>
-            <p className="text-charcoal/70 leading-relaxed mb-8">
-              The interactive 6-step planner will appear here. You&apos;ll
-              choose your mandir direction, deity, space, occasion, and
-              location — and get a personalised setup card with a one-tap
-              WhatsApp connection to Pandit Ji.
+            <p className="text-charcoal/70 leading-relaxed">
+              Six quick taps. No signup. Your selections save automatically.
             </p>
-            <div className="p-8 bg-white rounded-2xl border border-muted shadow-sm">
-              <p className="text-charcoal/60 text-sm mb-4">
-                Planner launching shortly.
-              </p>
-              <LinkButton
-                href={getWhatsAppLink(
-                  SITE_CONFIG.contact.primaryPhone,
-                  whatsappPrefill
-                )}
-                variant="primary"
-                size="md"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ask Pandit Ji directly
-              </LinkButton>
-            </div>
           </div>
+          <MandirPlanner />
         </section>
 
         {/* Modules placeholder — Phase 2 */}
