@@ -1,10 +1,25 @@
 "use client";
 
-import { useEffect, useReducer } from "react";
-import { ArrowLeft, ArrowRight, Check, RotateCcw, Sparkles } from "lucide-react";
+import { useEffect, useMemo, useReducer, useState } from "react";
+import Link from "next/link";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  ChevronDown,
+  ChevronUp,
+  Compass,
+  Home,
+  Info,
+  MapPin,
+  RotateCcw,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
 import { LinkButton } from "@/components/ui/Button";
 import { SITE_CONFIG } from "@/lib/constants";
 import { getWhatsAppLink } from "@/lib/utils";
+import { composeResult, type DirectionTier, type PlannerResult } from "@/lib/plannerLogic";
 import type {
   AnswerKey,
   Deity,
@@ -264,7 +279,7 @@ export function MandirPlanner() {
               }
             />
           ) : (
-            <ResultPreview answers={state.answers} />
+            <ResultCard answers={state.answers} />
           )}
         </div>
 
@@ -368,92 +383,273 @@ function QuestionScreen<V extends string>({
   );
 }
 
-function ResultPreview({ answers }: { answers: PlannerAnswers }) {
-  const whatsappMsg = buildWhatsAppMessage(answers);
+const TIER_STYLES: Record<DirectionTier, { badge: string; ring: string; icon: string }> = {
+  ideal: {
+    badge: "bg-saffron text-white",
+    ring: "ring-saffron/30",
+    icon: "text-saffron",
+  },
+  auspicious: {
+    badge: "bg-gold/80 text-charcoal",
+    ring: "ring-gold/30",
+    icon: "text-gold",
+  },
+  acceptable: {
+    badge: "bg-muted text-charcoal",
+    ring: "ring-muted",
+    icon: "text-charcoal/70",
+  },
+  avoid: {
+    badge: "bg-accent/15 text-accent",
+    ring: "ring-accent/30",
+    icon: "text-accent",
+  },
+  unknown: {
+    badge: "bg-ivory-dark text-charcoal",
+    ring: "ring-muted",
+    icon: "text-charcoal/60",
+  },
+};
+
+function ResultCard({ answers }: { answers: PlannerAnswers }) {
+  const result = useMemo<PlannerResult>(() => composeResult(answers), [answers]);
+  const [showAlternatives, setShowAlternatives] = useState(false);
+  const [showSamagri, setShowSamagri] = useState(false);
+  const tierStyle = TIER_STYLES[result.direction.tier];
+
   return (
-    <div className="text-center">
-      <div className="inline-flex items-center gap-2 text-saffron mb-3">
-        <Sparkles className="w-5 h-5" />
-        <span className="text-sm font-medium">Your inputs are saved</span>
-      </div>
-      <h3 className="font-heading text-2xl font-semibold text-charcoal mb-3">
-        Your personalised plan is coming up
-      </h3>
-      <p className="text-charcoal/70 leading-relaxed mb-6 max-w-xl mx-auto">
-        We&apos;ve recorded your selections below. The full personalised mandir
-        setup + recommended puja card will appear here in the next update.
-        Meanwhile, you can already reach Pandit Ji with the context you&apos;ve
-        provided.
-      </p>
-
-      <div className="text-left bg-ivory rounded-xl p-4 mb-6">
-        <SummaryRow label="Mandir direction" value={answers.direction} />
-        <SummaryRow label="Main deity" value={answers.deity} />
-        <SummaryRow label="Space type" value={answers.space} />
-        <SummaryRow label="Reason / occasion" value={answers.occasion} />
-        <SummaryRow label="Location" value={answers.location} />
-        <SummaryRow
-          label="Pandit Ji review"
-          value={answers.panditReview}
-          last
-        />
+    <div>
+      <div className="text-center mb-6">
+        <div className="inline-flex items-center gap-2 text-saffron mb-3">
+          <Sparkles className="w-5 h-5" />
+          <span className="text-sm font-medium">Your personalised plan</span>
+        </div>
+        <h3 className="font-heading text-2xl sm:text-3xl font-semibold text-charcoal">
+          Your Mandir &amp; Puja recommendation
+        </h3>
       </div>
 
-      <LinkButton
-        href={getWhatsAppLink(SITE_CONFIG.contact.primaryPhone, whatsappMsg)}
-        variant="primary"
-        size="lg"
-        target="_blank"
-        rel="noopener noreferrer"
+      {/* Direction verdict */}
+      <section
+        className={`p-5 rounded-xl bg-white border border-muted ring-1 ${tierStyle.ring} mb-4`}
+        aria-labelledby="result-direction"
       >
-        <Sparkles className="w-5 h-5" />
-        Continue on WhatsApp with Pandit Ji
-      </LinkButton>
+        <div className="flex items-start gap-3">
+          <Compass
+            className={`w-5 h-5 mt-0.5 flex-shrink-0 ${tierStyle.icon}`}
+            aria-hidden="true"
+          />
+          <div className="flex-1">
+            <div className="flex flex-wrap items-center gap-2 mb-1">
+              <span
+                className={`inline-block text-xs font-medium px-2 py-0.5 rounded-full ${tierStyle.badge}`}
+              >
+                Direction
+              </span>
+              <h4
+                id="result-direction"
+                className="font-heading text-lg font-semibold text-charcoal"
+              >
+                {result.direction.title}
+              </h4>
+            </div>
+            <p className="text-sm text-charcoal/75 leading-relaxed">
+              {result.direction.note}
+            </p>
+            <button
+              type="button"
+              onClick={() => setShowAlternatives((s) => !s)}
+              className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-saffron hover:underline"
+              aria-expanded={showAlternatives}
+            >
+              {showAlternatives ? (
+                <>
+                  Hide alternative directions <ChevronUp className="w-4 h-4" />
+                </>
+              ) : (
+                <>
+                  Explore alternative directions{" "}
+                  <ChevronDown className="w-4 h-4" />
+                </>
+              )}
+            </button>
+            {showAlternatives && (
+              <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {result.alternatives.map((group) => {
+                  const groupStyle = TIER_STYLES[group.tier];
+                  return (
+                    <div
+                      key={group.tier}
+                      className="p-3 rounded-lg bg-ivory border border-muted text-sm"
+                    >
+                      <span
+                        className={`inline-block text-xs font-medium px-2 py-0.5 rounded-full mb-1 ${groupStyle.badge}`}
+                      >
+                        {group.label}
+                      </span>
+                      <p className="text-charcoal/80">
+                        {group.directions.join(" · ")}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Recommended puja */}
+      <section
+        className="p-5 rounded-xl bg-white border border-muted mb-4"
+        aria-labelledby="result-puja"
+      >
+        <div className="flex items-start gap-3">
+          <Sparkles className="w-5 h-5 mt-0.5 flex-shrink-0 text-saffron" aria-hidden="true" />
+          <div className="flex-1">
+            <span className="inline-block text-xs font-medium px-2 py-0.5 rounded-full bg-saffron/10 text-saffron mb-1">
+              Recommended puja
+            </span>
+            <h4
+              id="result-puja"
+              className="font-heading text-lg font-semibold text-charcoal mb-2"
+            >
+              {result.puja.primary.name}
+            </h4>
+            <p className="text-sm text-charcoal/75 leading-relaxed">
+              {result.puja.primary.description}
+            </p>
+            {result.puja.secondary && (
+              <div className="mt-4 pt-4 border-t border-muted">
+                <p className="text-xs font-medium text-charcoal/60 mb-1">
+                  Often performed alongside
+                </p>
+                <p className="font-medium text-charcoal mb-1">
+                  {result.puja.secondary.name}
+                </p>
+                <p className="text-sm text-charcoal/75 leading-relaxed">
+                  {result.puja.secondary.description}
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Space guidance */}
+      <section
+        className="p-5 rounded-xl bg-white border border-muted mb-4"
+        aria-labelledby="result-space"
+      >
+        <div className="flex items-start gap-3">
+          <Home className="w-5 h-5 mt-0.5 flex-shrink-0 text-saffron" aria-hidden="true" />
+          <div className="flex-1">
+            <span className="inline-block text-xs font-medium px-2 py-0.5 rounded-full bg-saffron/10 text-saffron mb-1">
+              Setup tips
+            </span>
+            <h4
+              id="result-space"
+              className="font-heading text-lg font-semibold text-charcoal mb-2"
+            >
+              {result.space.title}
+            </h4>
+            <ul className="space-y-1.5 text-sm text-charcoal/75">
+              {result.space.tips.map((tip, idx) => (
+                <li key={idx} className="flex items-start gap-2">
+                  <Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-saffron" />
+                  <span>{tip}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Samagri preview */}
+      <section className="p-5 rounded-xl bg-white border border-muted mb-4">
+        <button
+          type="button"
+          onClick={() => setShowSamagri((s) => !s)}
+          aria-expanded={showSamagri}
+          className="w-full flex items-center justify-between text-left"
+        >
+          <div>
+            <span className="inline-block text-xs font-medium px-2 py-0.5 rounded-full bg-saffron/10 text-saffron mb-1">
+              Samagri checklist
+            </span>
+            <h4 className="font-heading text-lg font-semibold text-charcoal">
+              {showSamagri ? "Your samagri list" : "View samagri checklist"}
+            </h4>
+          </div>
+          {showSamagri ? (
+            <ChevronUp className="w-5 h-5 text-charcoal/60" />
+          ) : (
+            <ChevronDown className="w-5 h-5 text-charcoal/60" />
+          )}
+        </button>
+        {showSamagri && (
+          <ul className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-sm text-charcoal/80">
+            {result.samagri.map((item, idx) => (
+              <li key={idx} className="flex items-start gap-2">
+                <Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-saffron" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+        {showSamagri && (
+          <p className="mt-3 text-xs text-charcoal/60">
+            A downloadable PDF version will be available shortly. For now,
+            Pandit Ji can confirm the exact list for your puja over WhatsApp.
+          </p>
+        )}
+      </section>
+
+      {/* Location note */}
+      <section className="p-4 rounded-xl bg-ivory border border-muted mb-6 text-sm">
+        <div className="flex items-start gap-2">
+          <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-saffron" />
+          <p className="text-charcoal/80">{result.location.note}</p>
+        </div>
+      </section>
+
+      {/* Primary CTA */}
+      <div className="text-center mb-4">
+        <LinkButton
+          href={getWhatsAppLink(
+            SITE_CONFIG.contact.primaryPhone,
+            result.whatsappMessage
+          )}
+          variant="primary"
+          size="lg"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Sparkles className="w-5 h-5" />
+          Get this set up — message Pandit Ji
+        </LinkButton>
+      </div>
+
+      {/* Confirm with Pandit Ji disclaimer */}
+      <div className="p-4 rounded-lg bg-white border border-muted/60 flex items-start gap-3 text-sm text-charcoal/70">
+        <Info className="w-4 h-4 mt-0.5 flex-shrink-0 text-saffron" />
+        <p>
+          This is general guidance based on common Vastu and Vedic traditions.
+          For your specific kundli, home layout, or family tradition, please{" "}
+          <Link
+            href="/ask-pandit-ji"
+            className="text-saffron hover:underline font-medium"
+          >
+            confirm with Pandit Ji
+          </Link>
+          .
+        </p>
+      </div>
+
+      <p className="mt-4 text-xs text-charcoal/50 inline-flex items-center gap-1">
+        <ShieldCheck className="w-3 h-3" />
+        Your inputs are saved on this device — you can return any time.
+      </p>
     </div>
   );
-}
-
-function SummaryRow({
-  label,
-  value,
-  last,
-}: {
-  label: string;
-  value: string | undefined;
-  last?: boolean;
-}) {
-  return (
-    <div
-      className={`flex items-center justify-between text-sm py-2 ${
-        last ? "" : "border-b border-muted/60"
-      }`}
-    >
-      <span className="text-charcoal/60">{label}</span>
-      <span className="font-medium text-charcoal">
-        {value ? humanise(value) : "—"}
-      </span>
-    </div>
-  );
-}
-
-function humanise(value: string): string {
-  return value
-    .split("-")
-    .map((w) => (w === w.toUpperCase() ? w : w.charAt(0).toUpperCase() + w.slice(1)))
-    .join(" ");
-}
-
-function buildWhatsAppMessage(answers: PlannerAnswers): string {
-  const parts: string[] = [
-    "Namaste Pandit Ji, I used the Home Mandir & Puja Planner.",
-  ];
-  if (answers.direction) parts.push(`Mandir direction: ${humanise(answers.direction)}.`);
-  if (answers.deity) parts.push(`Main deity: ${humanise(answers.deity)}.`);
-  if (answers.space) parts.push(`Space: ${humanise(answers.space)}.`);
-  if (answers.occasion) parts.push(`Reason: ${humanise(answers.occasion)}.`);
-  if (answers.location) parts.push(`Location: ${humanise(answers.location)}.`);
-  if (answers.panditReview)
-    parts.push(`Preferred review: ${humanise(answers.panditReview)}.`);
-  parts.push("Please guide me on next steps.");
-  return parts.join(" ");
 }
