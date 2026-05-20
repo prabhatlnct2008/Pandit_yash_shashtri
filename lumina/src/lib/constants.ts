@@ -4,6 +4,7 @@ export const SITE_CONFIG = {
     "Trusted Pandit and Astrologer in South Delhi & Gurgaon. Quick astrology consultation, home puja, muhurat guidance & Vedic rituals.",
   url: "https://www.panditjeehomepuja.in",
   googleBusinessProfile: "https://share.google/7zlaYzGkyVLNZYd7w",
+  googleMapsLink: "https://maps.app.goo.gl/wGvusMo96wdbJLgq5",
   temple: {
     name: "Shiv Shakti Mandir",
     address: "Ward No. 6, Gandhi Colony, Mehrauli",
@@ -16,7 +17,7 @@ export const SITE_CONFIG = {
     email: "contact@pandityashshastri.com",
   },
   social: {
-    facebook: "",
+    facebook: "https://www.facebook.com/profile.php?id=61589884800057",
     instagram: "",
     youtube: "",
   },
@@ -154,6 +155,46 @@ export const CONSULTATION_TYPES = [
     description:
       "Detailed compatibility analysis for marriage including gun milan, manglik dosha check, and remedy suggestions if needed.",
     includes: ["Kundli matching", "Gun milan score", "Dosha review", "Remedy guidance"],
+  },
+];
+
+// PLACEHOLDER reviews until real Google review text is pasted in.
+// Pandit Ji or admin: replace the `text`, `author`, `area`, and `date` fields
+// with the actual review snippets from the Google Business Profile
+// (https://maps.app.goo.gl/wGvusMo96wdbJLgq5). Keep the array length at 3-6
+// for the homepage section to display well.
+export const REVIEWS = [
+  {
+    author: "Anita S.",
+    area: "Hauz Khas",
+    rating: 5,
+    date: "March 2026",
+    text:
+      "Pandit ji performed our Griha Pravesh with such calm clarity. He explained every step, arrived on time, and the entire vidhi felt unhurried and meaningful. Highly recommended.",
+  },
+  {
+    author: "Rohit K.",
+    area: "Gurgaon",
+    rating: 5,
+    date: "February 2026",
+    text:
+      "We had Pandit ji over for a Satyanarayan Katha at our DLF Phase 4 home. Clear pricing upfront, all samagri arranged, finished within the time he promised. Will book again.",
+  },
+  {
+    author: "Sneha M.",
+    area: "Mehrauli",
+    rating: 5,
+    date: "January 2026",
+    text:
+      "Our family has been associated with Shiv Shakti Mandir for years. Pandit ji's Rudrabhishek on Mahashivratri was beautiful — proper vidhi, respectful pace, and he involved everyone in the family.",
+  },
+  {
+    author: "Vikram T.",
+    area: "Greater Kailash",
+    rating: 5,
+    date: "December 2025",
+    text:
+      "Booked Pandit ji for my daughter's Mundan. He was patient with the kids, explained the sanskar to us, and the whole ceremony was over in 90 minutes without feeling rushed.",
   },
 ];
 

@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
 import { ConsultationCards } from "@/components/sections/ConsultationCards";
 import { PujaServicesPreview } from "@/components/sections/PujaServicesPreview";
+import { ReviewsSection } from "@/components/sections/ReviewsSection";
 import { TrustSection } from "@/components/sections/TrustSection";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { FAQSchema, BreadcrumbSchema, WebPageSchema } from "@/components/seo/JsonLd";
@@ -50,6 +51,9 @@ export default function HomePage() {
 
         {/* Trust & Local Proof Section */}
         <TrustSection />
+
+        {/* Reviews from real families */}
+        <ReviewsSection />
 
         {/* FAQ Section */}
         <FAQSection

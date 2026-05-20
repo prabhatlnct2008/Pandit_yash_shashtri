@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, MapPin, Mail } from "lucide-react";
+import { Facebook, Phone, MapPin, Mail, ExternalLink } from "lucide-react";
 import { SITE_CONFIG, NAV_LINKS, PUJA_SERVICES } from "@/lib/constants";
 import { LOCATIONS } from "@/lib/locations";
 import { getPhoneLink } from "@/lib/utils";
@@ -19,13 +19,24 @@ export function Footer() {
             <address className="not-italic text-ivory/80 space-y-3">
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
-                <p>
-                  {SITE_CONFIG.temple.name}
-                  <br />
-                  {SITE_CONFIG.temple.address}
-                  <br />
-                  {SITE_CONFIG.temple.city} – {SITE_CONFIG.temple.postalCode}
-                </p>
+                <div>
+                  <p>
+                    {SITE_CONFIG.temple.name}
+                    <br />
+                    {SITE_CONFIG.temple.address}
+                    <br />
+                    {SITE_CONFIG.temple.city} – {SITE_CONFIG.temple.postalCode}
+                  </p>
+                  <a
+                    href={SITE_CONFIG.googleMapsLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-gold hover:text-gold-light transition-colors text-sm mt-2"
+                  >
+                    Get directions on Google Maps
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-gold flex-shrink-0" />
@@ -49,6 +60,21 @@ export function Footer() {
                 <Mail className="w-5 h-5 text-gold flex-shrink-0" />
                 <span className="text-sm">Serving South Delhi & Gurgaon</span>
               </div>
+              {SITE_CONFIG.social.facebook && (
+                <div className="flex items-center gap-3 pt-1">
+                  <Facebook className="w-5 h-5 text-gold flex-shrink-0" />
+                  <a
+                    href={SITE_CONFIG.social.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm hover:text-gold transition-colors inline-flex items-center gap-1"
+                    aria-label="Visit Pandit Yash Shastri on Facebook"
+                  >
+                    Facebook page
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              )}
             </address>
           </div>
 
@@ -153,13 +179,27 @@ export function Footer() {
             </p>
             <div className="flex items-center gap-4 text-sm text-ivory/60">
               <a
-                href={SITE_CONFIG.googleBusinessProfile}
+                href={SITE_CONFIG.googleMapsLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-gold transition-colors"
               >
                 Google Reviews
               </a>
+              {SITE_CONFIG.social.facebook && (
+                <>
+                  <span>•</span>
+                  <a
+                    href={SITE_CONFIG.social.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-gold transition-colors inline-flex items-center gap-1"
+                  >
+                    <Facebook className="w-4 h-4" />
+                    Facebook
+                  </a>
+                </>
+              )}
               <span>•</span>
               <Link href="/contact" className="hover:text-gold transition-colors">
                 Contact Us

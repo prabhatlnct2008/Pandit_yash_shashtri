@@ -55,7 +55,12 @@ export function LocalBusinessSchema() {
       opens: "07:00",
       closes: "21:00",
     },
-    sameAs: [SITE_CONFIG.googleBusinessProfile],
+    hasMap: SITE_CONFIG.googleMapsLink,
+    sameAs: [
+      SITE_CONFIG.googleBusinessProfile,
+      SITE_CONFIG.googleMapsLink,
+      ...(SITE_CONFIG.social.facebook ? [SITE_CONFIG.social.facebook] : []),
+    ],
   };
 
   return <JsonLd data={schema} />;
@@ -82,7 +87,11 @@ export function PersonSchema() {
       "Vastu Shastra",
       "Marriage Matchmaking",
     ],
-    sameAs: [SITE_CONFIG.googleBusinessProfile],
+    sameAs: [
+      SITE_CONFIG.googleBusinessProfile,
+      SITE_CONFIG.googleMapsLink,
+      ...(SITE_CONFIG.social.facebook ? [SITE_CONFIG.social.facebook] : []),
+    ],
   };
 
   return <JsonLd data={schema} />;
