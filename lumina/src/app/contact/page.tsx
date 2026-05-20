@@ -312,7 +312,7 @@ export default function ContactPage() {
           </div>
         </section>
 
-        {/* Map Section Placeholder */}
+        {/* Map Section */}
         <section className="bg-ivory-dark py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8">
@@ -323,19 +323,26 @@ export default function ContactPage() {
                 Based at {SITE_CONFIG.temple.name}, Mehrauli
               </p>
             </div>
-            <div className="bg-muted rounded-xl h-64 flex items-center justify-center">
-              <div className="text-center text-charcoal/50">
-                <MapPin className="w-12 h-12 mx-auto mb-2" />
-                <p>Map integration coming soon</p>
-                <a
-                  href={`https://maps.google.com/?q=${SITE_CONFIG.geo.latitude},${SITE_CONFIG.geo.longitude}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-saffron hover:underline text-sm mt-2 inline-block"
-                >
-                  Open in Google Maps →
-                </a>
-              </div>
+            <div className="rounded-xl overflow-hidden shadow-sm border border-muted">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3304.925333606167!2d77.1755251!3d28.5163518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1f6b52eae52b%3A0x81aeb9c064131a1f!2sPandit%20ji%20Yash%20Shastri%20Home%20Puja!5e1!3m2!1sen!2sin!4v1779246835319!5m2!1sen!2sin"
+                title="Pandit ji Yash Shastri Home Puja — location on Google Maps"
+                className="w-full h-80 sm:h-96 border-0"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+            <div className="text-center mt-4">
+              <a
+                href={SITE_CONFIG.googleMapsLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-saffron hover:underline text-sm"
+              >
+                <MapPin className="w-4 h-4" />
+                Open in Google Maps for directions
+              </a>
             </div>
           </div>
         </section>

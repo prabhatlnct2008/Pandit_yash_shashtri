@@ -4,6 +4,7 @@ export const SITE_CONFIG = {
     "Trusted Pandit and Astrologer in South Delhi & Gurgaon. Quick astrology consultation, home puja, muhurat guidance & Vedic rituals.",
   url: "https://www.panditjeehomepuja.in",
   googleBusinessProfile: "https://share.google/7zlaYzGkyVLNZYd7w",
+  googleMapsLink: "https://maps.app.goo.gl/wGvusMo96wdbJLgq5",
   temple: {
     name: "Shiv Shakti Mandir",
     address: "Ward No. 6, Gandhi Colony, Mehrauli",
@@ -16,7 +17,7 @@ export const SITE_CONFIG = {
     email: "contact@pandityashshastri.com",
   },
   social: {
-    facebook: "",
+    facebook: "https://www.facebook.com/profile.php?id=61589884800057",
     instagram: "",
     youtube: "",
   },
@@ -154,6 +155,47 @@ export const CONSULTATION_TYPES = [
     description:
       "Detailed compatibility analysis for marriage including gun milan, manglik dosha check, and remedy suggestions if needed.",
     includes: ["Kundli matching", "Gun milan score", "Dosha review", "Remedy guidance"],
+  },
+];
+
+// Fallback reviews used when GOOGLE_PLACES_API_KEY is unset, the API call
+// fails, or returns no reviews. With the API key configured in Vercel,
+// ReviewsSection fetches live reviews and these are not displayed.
+// Index 0 (Kushagra Bhardwaj) is a real review captured from the GBP;
+// the rest are placeholder samples — replace or remove as more real
+// reviews become available.
+export const REVIEWS = [
+  {
+    author: "Kushagra Bhardwaj",
+    area: "Verified Google review",
+    rating: 5,
+    date: "2 months ago",
+    text:
+      "Pandit Yash Shastri ji ne Ganesh Laxmi Pujan evam Shri Radha Krishna Haldi, Mehendi aur Vivah ki poori vidhi bahut hi shuddh, shastriya aur adbhut tarike se sampann karvayi. Unka mantra uchcharan bahut hi spasht aur pavitra tha.",
+  },
+  {
+    author: "Anita S.",
+    area: "Hauz Khas",
+    rating: 5,
+    date: "Recent",
+    text:
+      "Pandit ji performed our Griha Pravesh with such calm clarity. He explained every step, arrived on time, and the entire vidhi felt unhurried and meaningful. Highly recommended.",
+  },
+  {
+    author: "Rohit K.",
+    area: "Gurgaon",
+    rating: 5,
+    date: "Recent",
+    text:
+      "We had Pandit ji over for a Satyanarayan Katha at our DLF Phase 4 home. Clear pricing upfront, all samagri arranged, finished within the time he promised. Will book again.",
+  },
+  {
+    author: "Sneha M.",
+    area: "Mehrauli",
+    rating: 5,
+    date: "Recent",
+    text:
+      "Our family has been associated with Shiv Shakti Mandir for years. Pandit ji's Rudrabhishek on Mahashivratri was beautiful — proper vidhi, respectful pace, and he involved everyone in the family.",
   },
 ];
 
