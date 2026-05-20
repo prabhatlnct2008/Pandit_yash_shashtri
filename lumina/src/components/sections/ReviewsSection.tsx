@@ -1,7 +1,12 @@
+import Image from "next/image";
 import { Quote, Star } from "lucide-react";
-import { REVIEWS, SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG } from "@/lib/constants";
+import { fetchGoogleReviews } from "@/lib/googleReviews";
 
-export function ReviewsSection() {
+export async function ReviewsSection() {
+  const reviews = (await fetchGoogleReviews()).slice(0, 4);
+  if (reviews.length === 0) return null;
+
   return (
     <section
       className="py-16 md:py-24 bg-ivory-dark"
@@ -32,9 +37,9 @@ export function ReviewsSection() {
 
         {/* Reviews Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-          {REVIEWS.map((review, idx) => (
+          {reviews.map((review, idx) => (
             <article
-              key={idx}
+              key={`${review.author}-${idx}`}
               className="bg-white p-6 rounded-2xl border border-muted shadow-sm flex flex-col"
             >
               <Quote
@@ -45,7 +50,7 @@ export function ReviewsSection() {
                 className="inline-flex items-center gap-0.5 mb-3"
                 aria-label={`${review.rating} out of 5 stars`}
               >
-                {Array.from({ length: review.rating }).map((_, i) => (
+                {Array.from({ length: Math.round(review.rating) }).map((_, i) => (
                   <Star
                     key={i}
                     className="w-4 h-4 text-gold fill-gold"
@@ -56,13 +61,32 @@ export function ReviewsSection() {
               <p className="text-sm text-charcoal/80 leading-relaxed mb-4 flex-grow">
                 &ldquo;{review.text}&rdquo;
               </p>
-              <footer className="pt-3 border-t border-muted">
-                <p className="font-medium text-charcoal text-sm">
-                  {review.author}
-                </p>
-                <p className="text-xs text-charcoal/60">
-                  {review.area} · {review.date}
-                </p>
+              <footer className="pt-3 border-t border-muted flex items-center gap-3">
+                {review.profilePhotoUrl ? (
+                  <Image
+                    src={review.profilePhotoUrl}
+                    alt=""
+                    width={32}
+                    height={32}
+                    className="w-8 h-8 rounded-full object-cover flex-shrink-0"
+                    unoptimized
+                  />
+                ) : (
+                  <div
+                    aria-hidden="true"
+                    className="w-8 h-8 rounded-full bg-saffron/15 text-saffron flex items-center justify-center text-sm font-medium flex-shrink-0"
+                  >
+                    {review.author.slice(0, 1).toUpperCase()}
+                  </div>
+                )}
+                <div className="min-w-0">
+                  <p className="font-medium text-charcoal text-sm truncate">
+                    {review.author}
+                  </p>
+                  <p className="text-xs text-charcoal/60 truncate">
+                    {[review.area, review.date].filter(Boolean).join(" · ")}
+                  </p>
+                </div>
               </footer>
             </article>
           ))}
