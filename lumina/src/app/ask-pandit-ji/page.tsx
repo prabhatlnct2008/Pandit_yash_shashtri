@@ -5,12 +5,13 @@ import { Card, CardTitle, CardDescription } from "@/components/ui/Card";
 import { LinkButton } from "@/components/ui/Button";
 import { FAQSchema, BreadcrumbSchema, WebPageSchema } from "@/components/seo/JsonLd";
 import { SITE_CONFIG } from "@/lib/constants";
+import { PANDIT_QAS, getSchemaQAs } from "@/lib/askPanditQAs";
 import { getWhatsAppLink } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Ask Pandit Ji - Vedic & Astrology Questions Answered",
   description:
-    "Have questions about puja, astrology, muhurat or Vedic rituals? Ask Pandit Yash Shastri directly. Get authentic answers rooted in traditional wisdom.",
+    "30+ questions about home puja, mandir vastu, shraddha vidhi, baby naming, mundan, weddings and muhurat — answered personally by Pandit Yash Shastri. Ask your own question on WhatsApp.",
   alternates: {
     canonical: `${SITE_CONFIG.url}/ask-pandit-ji`,
   },
@@ -22,40 +23,6 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
-
-// Sample Q&A content for SEO
-const sampleQAs = [
-  {
-    question: "What is the best time for Griha Pravesh puja?",
-    answer:
-      "The ideal time for Griha Pravesh depends on multiple factors including your horoscope, the property's direction, and current planetary positions. Generally, auspicious months like Vaishakh, Jyeshtha, Magha, and Phalgun are preferred. The muhurat should be calculated considering the owner's nakshatra and avoiding Rahu Kaal. It's best to consult an astrologer with your birth details for a personalized muhurat that ensures prosperity and peace in your new home.",
-    category: "Muhurat",
-  },
-  {
-    question: "How do I know if I have Manglik Dosha?",
-    answer:
-      "Manglik Dosha (also called Mangal Dosha or Kuja Dosha) occurs when Mars is placed in the 1st, 2nd, 4th, 7th, 8th, or 12th house of your birth chart. However, the severity varies based on the sign, aspects from other planets, and overall chart strength. Not all Manglik Doshas require remedies — some naturally cancel out after age 28 or through specific planetary combinations. A detailed kundli analysis is recommended before concluding about Manglik status and its actual impact on marriage.",
-    category: "Astrology",
-  },
-  {
-    question: "What puja should I do for business success?",
-    answer:
-      "For business success, several pujas can be beneficial depending on your specific situation. Ganesh Puja removes obstacles, Lakshmi Puja attracts prosperity, and Navgraha Shanti addresses any planetary challenges in your horoscope affecting career. For new ventures, a Vastu Puja at your office helps create positive energy. Regular Satyanarayan Katha is also recommended for sustained success. The specific recommendation depends on your birth chart — certain planetary periods favor certain approaches.",
-    category: "Puja",
-  },
-  {
-    question: "When should I do Satyanarayan Katha?",
-    answer:
-      "Satyanarayan Katha can be performed on any auspicious day, but Purnima (full moon day) is considered especially beneficial. It's commonly done during major life events like buying a new home, starting a business, achieving success, or fulfilling a wish. The katha is also performed to seek blessings for family well-being and to express gratitude. Ekadashi and Saturdays are also favorable. The most important aspect is performing it with devotion and a pure heart.",
-    category: "Puja",
-  },
-  {
-    question: "What are the remedies for Kaal Sarp Dosha?",
-    answer:
-      "Kaal Sarp Dosha occurs when all planets are hemmed between Rahu and Ketu. Remedies include: Kaal Sarp Dosha Nivaran Puja (preferably at Trimbakeshwar or at home with proper vidhi), regular chanting of Maha Mrityunjay Mantra, offering milk to Shiv Ling on Mondays, wearing a silver snake ring, and donating to the needy on Saturdays. The intensity of remedies depends on the type of Kaal Sarp and which houses are affected. Some forms are less severe and may not require elaborate remedies.",
-    category: "Astrology",
-  },
-];
 
 const questionCategories = [
   { name: "Astrology & Kundli", icon: "✨", description: "Horoscope, doshas, planetary effects" },
@@ -81,12 +48,7 @@ export default function AskPanditJiPage() {
           { name: "Ask Pandit Ji", url: `${SITE_CONFIG.url}/ask-pandit-ji` },
         ]}
       />
-      <FAQSchema
-        faqs={sampleQAs.map((qa) => ({
-          question: qa.question,
-          answer: qa.answer,
-        }))}
-      />
+      <FAQSchema faqs={getSchemaQAs()} />
 
       <article>
         {/* Hero Section */}
@@ -285,31 +247,35 @@ export default function AskPanditJiPage() {
                 id="answered-questions"
                 className="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-4"
               >
-                Questions & Answers
+                {PANDIT_QAS.length}+ Questions answered by Pandit Ji
               </h2>
               <p className="text-charcoal/70">
-                Browse through answered questions for guidance and insights
+                Real questions from South Delhi and Gurgaon families — on
+                puja, mandir, shraddha, sanskars, muhurat, and astrology.
               </p>
             </div>
 
             <div className="space-y-6">
-              {sampleQAs.map((qa, index) => (
-                <Card key={index} variant="default" className="overflow-hidden">
+              {PANDIT_QAS.map((qa) => (
+                <Card key={qa.id} variant="default" className="overflow-hidden">
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-full bg-saffron/10 flex items-center justify-center text-saffron flex-shrink-0">
                       <HelpCircle className="w-5 h-5" />
                     </div>
                     <div className="flex-grow">
-                      <div className="flex items-center gap-2 mb-2">
+                      <div className="flex items-center gap-2 mb-2 flex-wrap">
                         <span className="text-xs px-2 py-1 bg-ivory rounded-full text-charcoal/60">
                           {qa.category}
+                        </span>
+                        <span className="text-xs text-charcoal/50">
+                          Asked by {qa.askedBy} · {qa.dateRelative}
                         </span>
                       </div>
                       <h3 className="font-heading text-lg font-semibold text-charcoal mb-3">
                         {qa.question}
                       </h3>
                       <div className="pl-4 border-l-2 border-gold">
-                        <p className="text-charcoal/70 leading-relaxed">
+                        <p className="text-charcoal/70 leading-relaxed whitespace-pre-line">
                           {qa.answer}
                         </p>
                         <p className="text-sm text-saffron mt-3 font-medium">
