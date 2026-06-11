@@ -24,7 +24,7 @@
   --color-foreground: var(--color-charcoal);
 
   /* Typography */
-  --font-heading: "Playfair Display", serif;
+  --font-heading: "Playfair Display", "Noto Serif Devanagari", serif;
   --font-body: "Inter", sans-serif;
 
   /* Font sizes with line heights */

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function FamilyPanditSection() {
   return (
-    <section className="bg-white" aria-labelledby="family-pandit-heading">
+    <section className="bg-ivory" aria-labelledby="family-pandit-heading">
       {/* Image band */}
       <div className="relative h-56 md:h-72 lg:h-80">
         <Image
@@ -17,11 +17,16 @@ export function FamilyPanditSection() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <h2
           id="family-pandit-heading"
-          className="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-8"
+          className="font-heading text-3xl md:text-4xl font-bold text-saffron mb-8"
         >
           What it means to have your own Pandit jee
         </h2>
         <div className="space-y-6 text-lg text-charcoal/80 leading-relaxed">
+          <p className="text-xl text-charcoal">
+            For your home&rsquo;s important moments, you don&rsquo;t want a new
+            face every time. You want one Pandit jee — who knows your family,
+            does every vidhi properly, and is there for the next puja too.
+          </p>
           <p>
             In most families, the best pujas were never &ldquo;booked.&rdquo;
             There was simply <em>a</em> Pandit jee. The one who came for the
@@ -40,6 +45,11 @@ export function FamilyPanditSection() {
             feels right, call me again. Slowly I stop being a name on a screen
             and become your family&rsquo;s Pandit jee — the one your children
             recognise at the door.
+          </p>
+          <p>
+            I am Pandit Yash Shastri. Tell me the puja and the date.
+            I&rsquo;ll share an auspicious muhurat and a clear price, and we
+            begin.
           </p>
         </div>
       </div>
