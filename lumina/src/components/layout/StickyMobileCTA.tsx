@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { HelpCircle, Phone, Sparkles, Calendar } from "lucide-react";
+import { HelpCircle, Phone, MessageCircle, Calendar } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 import { getPhoneLink, getWhatsAppLink } from "@/lib/utils";
 import { WA_TEMPLATES } from "@/lib/whatsappTemplates";
@@ -21,13 +21,13 @@ function DefaultStickyBar() {
     <div className="fixed bottom-0 left-0 right-0 z-50 sm:hidden bg-ivory border-t-2 border-muted shadow-lg print:hidden">
       <div className="flex">
         <a
-          href={getWhatsAppLink(SITE_CONFIG.contact.primaryPhone, WA_TEMPLATES.generic())}
-          className="flex-1 flex items-center justify-center gap-2 py-4 bg-accent text-white font-medium"
+          href={getWhatsAppLink(SITE_CONFIG.contact.primaryPhone, WA_TEMPLATES.general())}
+          className="flex-1 flex items-center justify-center gap-2 py-4 bg-gold text-white font-medium"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Sparkles className="w-5 h-5" />
-          <span>Quick Consult</span>
+          <MessageCircle className="w-5 h-5" />
+          <span>Book on WhatsApp</span>
         </a>
         <a
           href={getPhoneLink(SITE_CONFIG.contact.primaryPhone)}

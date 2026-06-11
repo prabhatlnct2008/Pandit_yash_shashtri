@@ -1,106 +1,122 @@
-import Link from "next/link";
-import { Star, MapPin, Sparkles, Calendar, HelpCircle } from "lucide-react";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { Phone, Volume2, VolumeX } from "lucide-react";
 import { LinkButton } from "@/components/ui/Button";
 import { SITE_CONFIG } from "@/lib/constants";
-import { getWhatsAppLink } from "@/lib/utils";
+import { getPhoneLink, getWhatsAppLink } from "@/lib/utils";
+import { WA_TEMPLATES } from "@/lib/whatsappTemplates";
+
+const HERO_POSTER = "/images/havan-kund-flame-home-puja-south-delhi.jpg";
 
 export function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(true);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      video.pause();
+    }
+  }, []);
+
+  const toggleMute = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = !video.muted;
+    setIsMuted(video.muted);
+  };
+
   return (
-    <section className="relative bg-gradient-to-b from-ivory to-ivory-dark py-16 md:py-24 lg:py-32 overflow-hidden">
-      {/* Decorative background pattern */}
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%237A1E1E' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      />
+    <section className="relative overflow-hidden">
+      {/* Background video with poster fallback and maroon scrim */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <Image
+          src={HERO_POSTER}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <video
+          ref={videoRef}
+          className="absolute inset-0 w-full h-full object-cover motion-reduce:hidden"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={HERO_POSTER}
+        >
+          <source src="/videos/havan-flame-loop.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-t from-saffron-dark/95 via-saffron/65 to-charcoal/35" />
+      </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Sanskrit Invocation */}
-          <div className="mb-8 animate-fade-in">
-            <p className="font-heading text-saffron/80 text-lg md:text-xl italic leading-relaxed">
-              ॐ असतो मा सद्गमय
-              <br />
-              तमसो मा ज्योतिर्गमय
-              <br />
-              मृत्योर्मा अमृतं गमय
-            </p>
-          </div>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 lg:py-40">
+        <div className="max-w-3xl">
+          {/* Kicker */}
+          <p className="text-gold-light font-medium text-sm md:text-base tracking-wide mb-5 animate-fade-in">
+            🟢 Available across South Delhi &amp; Gurgaon · Home · Society ·
+            Office · Temple · Google-rated
+          </p>
 
-          {/* Main Heading */}
-          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-charcoal mb-6 animate-fade-in">
-            Guidance Rooted in{" "}
-            <span className="text-saffron">Vedic Wisdom</span>
+          {/* Headline */}
+          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-ivory leading-tight mb-6 animate-fade-in">
+            Get your puja done by a Pandit jee who becomes your family&rsquo;s
+            own.
           </h1>
 
-          {/* Sub-heading */}
-          <p className="text-xl md:text-2xl text-charcoal/80 font-medium mb-6">
-            Pandit & Astrologer for South Delhi and Gurgaon Families
+          {/* Subhead */}
+          <p className="text-lg md:text-xl text-ivory/90 leading-relaxed mb-4 max-w-2xl">
+            For your home&rsquo;s important moments, you don&rsquo;t want a new
+            face every time. You want one Pandit jee — who knows your family,
+            does every vidhi properly, and is there for the next puja too.
+          </p>
+          <p className="text-lg md:text-xl text-ivory/90 leading-relaxed mb-10 max-w-2xl">
+            I am Pandit Yash Shastri. Tell me the puja and the date. I&rsquo;ll
+            share an auspicious muhurat and a clear price, and we begin.
           </p>
 
-          {/* Support Copy */}
-          <p className="text-lg text-charcoal/70 max-w-2xl mx-auto mb-8 leading-relaxed">
-            Personal astrology consultations, home puja services, and muhurat
-            guidance — performed with shuddh vidhi, calm clarity, and sincerity.
-          </p>
-
-          {/* Trust Strip */}
-          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 mb-10 text-sm md:text-base">
-            <div className="flex items-center gap-2 text-charcoal/80">
-              <Star className="w-5 h-5 text-gold fill-gold" />
-              <span>Google-rated</span>
-            </div>
-            <div className="flex items-center gap-2 text-charcoal/80">
-              <span className="text-saffron">🕉️</span>
-              <span>{SITE_CONFIG.temple.name}, Mehrauli</span>
-            </div>
-            <div className="flex items-center gap-2 text-charcoal/80">
-              <MapPin className="w-5 h-5 text-saffron" />
-              <span>South Delhi & Gurgaon</span>
-            </div>
-          </div>
-
-          {/* Primary CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <LinkButton
               href={getWhatsAppLink(
                 SITE_CONFIG.contact.primaryPhone,
-                "Hello, I would like to book an astrology consultation with Pandit Ji."
+                WA_TEMPLATES.general()
               )}
-              variant="secondary"
+              variant="brass"
               size="lg"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Sparkles className="w-5 h-5" />
-              Book Quick Astrology Consult
+              Book on WhatsApp
             </LinkButton>
-            <LinkButton href="/puja-services" variant="primary" size="lg">
-              <Calendar className="w-5 h-5" />
-              Schedule a Puja
+            <LinkButton
+              href={getPhoneLink(SITE_CONFIG.contact.primaryPhone)}
+              variant="outline"
+              size="lg"
+              className="border-ivory text-ivory hover:bg-ivory hover:text-saffron"
+            >
+              <Phone className="w-5 h-5" />
+              Call: {SITE_CONFIG.contact.primaryPhone}
             </LinkButton>
-          </div>
-
-          {/* Secondary CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-            <Link
-              href="/ask-pandit-ji"
-              className="inline-flex items-center gap-2 text-saffron hover:text-saffron-dark font-medium transition-colors"
-            >
-              <HelpCircle className="w-5 h-5" />
-              <span>Ask Pandit Ji (Free)</span>
-            </Link>
-            <Link
-              href="/home-mandir-puja-planner"
-              className="inline-flex items-center gap-2 text-saffron hover:text-saffron-dark font-medium transition-colors"
-            >
-              <Sparkles className="w-5 h-5" />
-              <span>Try our Mandir &amp; Puja Planner</span>
-            </Link>
           </div>
         </div>
       </div>
+
+      {/* Unmute toggle */}
+      <button
+        type="button"
+        onClick={toggleMute}
+        className="absolute bottom-4 right-4 z-10 p-2.5 rounded-full bg-charcoal/50 text-ivory hover:bg-charcoal/70 transition-colors motion-reduce:hidden"
+        aria-label={isMuted ? "Unmute background video" : "Mute background video"}
+      >
+        {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+      </button>
     </section>
   );
 }

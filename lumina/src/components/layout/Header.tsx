@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X, Phone, Sparkles } from "lucide-react";
+import { Menu, X, Phone, MessageCircle } from "lucide-react";
 import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 import { cn, getPhoneLink, getWhatsAppLink } from "@/lib/utils";
+import { WA_TEMPLATES } from "@/lib/whatsappTemplates";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -41,14 +42,14 @@ export function Header() {
             <a
               href={getWhatsAppLink(
                 SITE_CONFIG.contact.primaryPhone,
-                "Hello, I would like to book a consultation with Pandit Ji."
+                WA_TEMPLATES.general()
               )}
-              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-accent text-white rounded-full font-medium hover:bg-accent-light transition-colors"
+              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-gold text-white rounded-full font-medium hover:bg-gold-dark transition-colors"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Sparkles className="w-4 h-4" />
-              <span>Quick Consult</span>
+              <MessageCircle className="w-4 h-4" />
+              <span>Book on WhatsApp</span>
             </a>
             <a
               href={getPhoneLink(SITE_CONFIG.contact.primaryPhone)}
@@ -96,14 +97,14 @@ export function Header() {
               <a
                 href={getWhatsAppLink(
                   SITE_CONFIG.contact.primaryPhone,
-                  "Hello, I would like to book a consultation with Pandit Ji."
+                  WA_TEMPLATES.general()
                 )}
-                className="flex items-center justify-center gap-2 px-4 py-3 bg-accent text-white rounded-full font-medium"
+                className="flex items-center justify-center gap-2 px-4 py-3 bg-gold text-white rounded-full font-medium"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Sparkles className="w-4 h-4" />
-                <span>Quick Consult</span>
+                <MessageCircle className="w-4 h-4" />
+                <span>Book on WhatsApp</span>
               </a>
               <a
                 href={getPhoneLink(SITE_CONFIG.contact.primaryPhone)}

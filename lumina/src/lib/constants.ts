@@ -31,7 +31,7 @@ export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/astrology-consultation", label: "Astrology" },
   { href: "/puja-services", label: "Puja Services" },
-  { href: "/ask-pandit-ji", label: "Ask Pandit Ji" },
+  { href: "/ask-pandit-ji", label: "Ask Pandit Jee" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -126,6 +126,71 @@ export const PUJA_SERVICES = [
   },
 ];
 
+// Landing-page puja cards (build sheet v2). `waName` is the puja name used
+// in the pre-filled WhatsApp message; `name` is the display name on the card.
+export const HOME_PUJA_CARDS = [
+  {
+    id: "griha-pravesh",
+    name: "Griha Pravesh",
+    waName: "Griha Pravesh Puja",
+    image: "/images/griha-pravesh-puja-setup-new-home.jpg",
+    alt: "Griha pravesh puja setup at the entrance of a new home.",
+    description:
+      "Before the family steps into a new home. For peace, prosperity, and protection — welcomed the right way, by a Pandit jee who'll be around for the next puja in it too.",
+    duration: "2–3 hrs",
+  },
+  {
+    id: "satyanarayan-katha",
+    name: "Satyanarayan Katha",
+    waName: "Satyanarayan Katha",
+    image: "/images/satyanarayan-katha-mandap-vishnu-puja.jpg",
+    alt: "Satyanarayan Katha mandap arranged for a home puja.",
+    description:
+      "A lovely puja for Lord Vishnu — done when there is gratitude in the heart, or a wish you are holding close.",
+    duration: "2–3 hrs",
+  },
+  {
+    id: "rudrabhishek",
+    name: "Rudrabhishek",
+    waName: "Rudrabhishek",
+    image: "/images/rudrabhishek-shivling-abhishek-puja.jpg",
+    alt: "Rudrabhishek abhishek of a Shivling during a home Shiva puja.",
+    description:
+      "The abhishek of Lord Shiva. When there are obstacles, health troubles, or a heaviness you cannot quite name.",
+    duration: "1.5–2 hrs",
+  },
+  {
+    id: "mahamrityunjay-jaap",
+    name: "Mahamrityunjay Jaap",
+    waName: "Mahamrityunjay Jaap",
+    image: "/images/mahamrityunjay-jaap-rudraksha-mala.jpg",
+    alt: "Rudraksha mala and diya for a Mahamrityunjay Jaap.",
+    description:
+      "The healing mantra. For long life and protection. Families ask mostly when someone is unwell.",
+    duration: "1–2 hrs",
+  },
+  {
+    id: "navgraha-shanti",
+    name: "Navgraha Shanti",
+    waName: "Navgraha Shanti Puja",
+    image: "/images/navgraha-shanti-puja-nine-lamps.jpg",
+    alt: "Nine lamps arranged for a Navgraha Shanti puja.",
+    description:
+      "When the grahas are creating trouble in career, marriage, or health. This calms them.",
+    duration: "2–3 hrs",
+  },
+  {
+    id: "vastu-shanti",
+    name: "Vastu Shanti",
+    waName: "Vastu Shanti Puja",
+    image: "/images/vastu-shanti-puja-home-corner.jpg",
+    alt: "Vastu Shanti puja setup in the corner of a home.",
+    description:
+      "For vastu dosha in a home or office. It settles the space and the good feeling returns.",
+    duration: "2–3 hrs",
+  },
+];
+
 export const CONSULTATION_TYPES = [
   {
     id: "quick",
@@ -171,7 +236,7 @@ export const REVIEWS = [
     rating: 5,
     date: "2 months ago",
     text:
-      "Pandit Yash Shastri ji ne Ganesh Laxmi Pujan evam Shri Radha Krishna Haldi, Mehendi aur Vivah ki poori vidhi bahut hi shuddh, shastriya aur adbhut tarike se sampann karvayi. Unka mantra uchcharan bahut hi spasht aur pavitra tha.",
+      "Pandit Yash Shastri jee ne Ganesh Laxmi Pujan evam Shri Radha Krishna Haldi, Mehendi aur Vivah ki poori vidhi bahut hi shuddh, shastriya aur adbhut tarike se sampann karvayi. Unka mantra uchcharan bahut hi spasht aur pavitra tha.",
   },
   {
     author: "Anita S.",
@@ -179,7 +244,7 @@ export const REVIEWS = [
     rating: 5,
     date: "Recent",
     text:
-      "Pandit ji performed our Griha Pravesh with such calm clarity. He explained every step, arrived on time, and the entire vidhi felt unhurried and meaningful. Highly recommended.",
+      "Pandit jee performed our Griha Pravesh with such calm clarity. He explained every step, arrived on time, and the whole vidhi felt unhurried and meaningful.",
   },
   {
     author: "Rohit K.",
@@ -187,7 +252,7 @@ export const REVIEWS = [
     rating: 5,
     date: "Recent",
     text:
-      "We had Pandit ji over for a Satyanarayan Katha at our DLF Phase 4 home. Clear pricing upfront, all samagri arranged, finished within the time he promised. Will book again.",
+      "We had Pandit jee over for a Satyanarayan Katha at our home in Gurgaon. Clear pricing upfront, all samagri arranged, finished within the time he promised. Will book again.",
   },
   {
     author: "Sneha M.",
@@ -195,34 +260,34 @@ export const REVIEWS = [
     rating: 5,
     date: "Recent",
     text:
-      "Our family has been associated with Shiv Shakti Mandir for years. Pandit ji's Rudrabhishek on Mahashivratri was beautiful — proper vidhi, respectful pace, and he involved everyone in the family.",
+      "Pandit jee's Rudrabhishek on Mahashivratri was beautiful. Proper vidhi, a respectful pace, and he involved everyone in the family.",
   },
 ];
 
 export const HOME_FAQS = [
   {
-    question: "What services does Pandit Yash Shastri offer?",
+    question: "What do I need to arrange?",
     answer:
-      "Pandit Yash Shastri offers comprehensive spiritual services including astrology consultations (kundli reading, horoscope analysis, marriage matchmaking), and traditional puja services such as Griha Pravesh, Satyanarayan Katha, Rudrabhishek, wedding ceremonies, and various sanskars. All services are available for South Delhi and Gurgaon residents.",
+      "Very little. I send a small list after you book, but most of the samagri I carry myself. Want zero headache? I can arrange all of it.",
   },
   {
-    question: "How can I book an astrology consultation?",
+    question: "How do I book?",
     answer:
-      "You can book a consultation by calling directly at 9716684871 or 9340899598, or by clicking the 'Quick Consult' button on this website. For detailed consultations, you can schedule an appointment for in-person, phone, or video sessions.",
+      "WhatsApp me on 9716684871, or call. Tell me the puja and the date, and I take it from there.",
   },
   {
-    question: "Which areas does Pandit Ji serve?",
+    question: "Which areas do you come to?",
     answer:
-      "Pandit Yash Shastri serves all of South Delhi including Chhatarpur, Mehrauli, Green Park, Hauz Khas, Greater Kailash (GK1 & GK2), Panchsheel Enclave, Lajpat Nagar, and areas near AIIMS Delhi. Services are also available throughout Gurgaon.",
+      "All of South Delhi — Chhatarpur, Mehrauli, Green Park, Hauz Khas, Greater Kailash, Panchsheel Enclave, Lajpat Nagar, the AIIMS side. And Gurgaon.",
   },
   {
-    question: "What should I prepare for a home puja?",
+    question: "Is online consultation possible?",
     answer:
-      "The requirements vary by puja type. After booking, Pandit Ji will provide a detailed samagri (materials) list specific to your puja. Basic items like flowers, fruits, and diya are usually needed. For convenience, samagri arrangement can also be discussed.",
+      "Yes, phone and video both. Send me your birth details — date, time, place — a little before, so your kundli is ready.",
   },
   {
-    question: "Is online astrology consultation available?",
+    question: "Will I always get you, or someone else?",
     answer:
-      "Yes, both phone and video consultations are available for those who cannot meet in person. You will need to share your birth details (date, time, and place) in advance for kundli preparation.",
+      "You will get me. That is the whole point — I want to be your family's Pandit jee, not a one-time booking.",
   },
 ];
