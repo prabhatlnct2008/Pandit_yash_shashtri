@@ -33,7 +33,7 @@ export function KundliSection() {
           {/* Image */}
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
             <Image
-              src="/images/janam-kundli-vedic-astrology-chart.jpg"
+              src="/images/janam-kundli-vedic-astrology-chart.jpg?v=2"
               alt="A hand-drawn Vedic janam kundli chart for astrology consultation."
               fill
               sizes="(max-width: 768px) 90vw, 45vw"

@@ -8,7 +8,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { getPhoneLink, getWhatsAppLink } from "@/lib/utils";
 import { WA_TEMPLATES } from "@/lib/whatsappTemplates";
 
-const HERO_POSTER = "/images/havan-kund-flame-home-puja-south-delhi.jpg";
+const HERO_POSTER = "/images/havan-kund-flame-home-puja-south-delhi.jpg?v=2";
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);

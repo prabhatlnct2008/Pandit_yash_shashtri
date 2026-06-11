@@ -133,7 +133,7 @@ export const HOME_PUJA_CARDS = [
     id: "griha-pravesh",
     name: "Griha Pravesh",
     waName: "Griha Pravesh Puja",
-    image: "/images/griha-pravesh-puja-setup-new-home.jpg",
+    image: "/images/griha-pravesh-puja-setup-new-home.jpg?v=2",
     alt: "Griha pravesh puja setup at the entrance of a new home.",
     description:
       "Before the family steps into a new home. For peace, prosperity, and protection — welcomed the right way, by a Pandit jee who'll be around for the next puja in it too.",
@@ -143,7 +143,7 @@ export const HOME_PUJA_CARDS = [
     id: "satyanarayan-katha",
     name: "Satyanarayan Katha",
     waName: "Satyanarayan Katha",
-    image: "/images/satyanarayan-katha-mandap-vishnu-puja.jpg",
+    image: "/images/satyanarayan-katha-mandap-vishnu-puja.jpg?v=2",
     alt: "Satyanarayan Katha mandap arranged for a home puja.",
     description:
       "A lovely puja for Lord Vishnu — done when there is gratitude in the heart, or a wish you are holding close.",
@@ -153,7 +153,7 @@ export const HOME_PUJA_CARDS = [
     id: "rudrabhishek",
     name: "Rudrabhishek",
     waName: "Rudrabhishek",
-    image: "/images/rudrabhishek-shivling-abhishek-puja.jpg",
+    image: "/images/rudrabhishek-shivling-abhishek-puja.jpg?v=2",
     alt: "Rudrabhishek abhishek of a Shivling during a home Shiva puja.",
     description:
       "The abhishek of Lord Shiva. When there are obstacles, health troubles, or a heaviness you cannot quite name.",
@@ -163,7 +163,7 @@ export const HOME_PUJA_CARDS = [
     id: "mahamrityunjay-jaap",
     name: "Mahamrityunjay Jaap",
     waName: "Mahamrityunjay Jaap",
-    image: "/images/mahamrityunjay-jaap-rudraksha-mala.jpg",
+    image: "/images/mahamrityunjay-jaap-rudraksha-mala.jpg?v=2",
     alt: "Rudraksha mala and diya for a Mahamrityunjay Jaap.",
     description:
       "The healing mantra. For long life and protection. Families ask mostly when someone is unwell.",
@@ -173,7 +173,7 @@ export const HOME_PUJA_CARDS = [
     id: "navgraha-shanti",
     name: "Navgraha Shanti",
     waName: "Navgraha Shanti Puja",
-    image: "/images/navgraha-shanti-puja-nine-lamps.jpg",
+    image: "/images/navgraha-shanti-puja-nine-lamps.jpg?v=2",
     alt: "Nine lamps arranged for a Navgraha Shanti puja.",
     description:
       "When the grahas are creating trouble in career, marriage, or health. This calms them.",
@@ -183,7 +183,7 @@ export const HOME_PUJA_CARDS = [
     id: "vastu-shanti",
     name: "Vastu Shanti",
     waName: "Vastu Shanti Puja",
-    image: "/images/vastu-shanti-puja-home-corner.jpg",
+    image: "/images/vastu-shanti-puja-home-corner.jpg?v=2",
     alt: "Vastu Shanti puja setup in the corner of a home.",
     description:
       "For vastu dosha in a home or office. It settles the space and the good feeling returns.",
