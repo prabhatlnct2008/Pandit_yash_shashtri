@@ -28,7 +28,7 @@ export async function ReviewsSection() {
             id="reviews-heading"
             className="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-4"
           >
-            What families say about Pandit Ji
+            What families say
           </h2>
           <p className="text-lg text-charcoal/70 leading-relaxed">
             Verified reviews from South Delhi and Gurgaon families on Google.

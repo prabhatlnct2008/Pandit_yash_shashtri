@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { StickyMobileCTA } from "@/components/layout/StickyMobileCTA";
+import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
 import { LocalBusinessSchema, PersonSchema } from "@/components/seo/JsonLd";
 import { SITE_CONFIG } from "@/lib/constants";
 import "./globals.css";
@@ -108,6 +109,7 @@ export default function RootLayout({
         <main className="flex-grow pb-16 sm:pb-0">{children}</main>
         <Footer />
         <StickyMobileCTA />
+        <FloatingWhatsApp />
       </body>
     </html>
   );

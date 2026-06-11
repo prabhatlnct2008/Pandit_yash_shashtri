@@ -1,24 +1,29 @@
 import { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
-import { ConsultationCards } from "@/components/sections/ConsultationCards";
+import { QuickFacts } from "@/components/sections/QuickFacts";
+import { FamilyPanditSection } from "@/components/sections/FamilyPanditSection";
+import { AboutSection } from "@/components/sections/AboutSection";
 import { PujaServicesPreview } from "@/components/sections/PujaServicesPreview";
+import { HowItGoesSection } from "@/components/sections/HowItGoesSection";
+import { KundliSection } from "@/components/sections/KundliSection";
 import { ReviewsSection } from "@/components/sections/ReviewsSection";
-import { TrustSection } from "@/components/sections/TrustSection";
+import { TalkFirstSection } from "@/components/sections/TalkFirstSection";
 import { FAQSection } from "@/components/sections/FAQSection";
+import { ClosingCTA } from "@/components/sections/ClosingCTA";
 import { FAQSchema, BreadcrumbSchema, WebPageSchema } from "@/components/seo/JsonLd";
 import { HOME_FAQS, SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Pandit & Astrologer in South Delhi & Gurgaon | Pandit Yash Shastri",
   description:
-    "Trusted Pandit and Astrologer in South Delhi & Gurgaon. Quick astrology consultation, home puja, muhurat guidance & Vedic rituals. Book your consultation today.",
+    "Get your puja done by a Pandit jee who becomes your family's own. Home puja, kundli & astrology across South Delhi & Gurgaon. Clear price, all samagri, the same Pandit jee every time.",
   alternates: {
     canonical: SITE_CONFIG.url,
   },
   openGraph: {
     title: "Pandit & Astrologer in South Delhi & Gurgaon | Pandit Yash Shastri",
     description:
-      "Trusted Pandit and Astrologer in South Delhi & Gurgaon. Quick astrology consultation, home puja, muhurat guidance & Vedic rituals.",
+      "Get your puja done by a Pandit jee who becomes your family's own. Home puja, kundli & astrology across South Delhi & Gurgaon.",
     url: SITE_CONFIG.url,
     type: "website",
   },
@@ -30,37 +35,50 @@ export default function HomePage() {
       {/* Schema Markup */}
       <WebPageSchema
         title="Pandit & Astrologer in South Delhi & Gurgaon"
-        description="Trusted Pandit and Astrologer in South Delhi & Gurgaon. Quick astrology consultation, home puja, muhurat guidance & Vedic rituals."
+        description="Get your puja done by a Pandit jee who becomes your family's own. Home puja, kundli & astrology across South Delhi & Gurgaon."
         url={SITE_CONFIG.url}
       />
-      <BreadcrumbSchema
-        items={[{ name: "Home", url: SITE_CONFIG.url }]}
-      />
+      <BreadcrumbSchema items={[{ name: "Home", url: SITE_CONFIG.url }]} />
       <FAQSchema faqs={HOME_FAQS} />
 
       {/* Page Content */}
       <article>
-        {/* Hero Section */}
+        {/* Section 1 — Hero (havan flame video) */}
         <Hero />
 
-        {/* Quick Consultation Section */}
-        <ConsultationCards />
+        {/* Section 1B — Quick facts strip */}
+        <QuickFacts />
 
-        {/* Puja Services Preview */}
+        {/* Section 2 — What a family Pandit jee means */}
+        <FamilyPanditSection />
+
+        {/* Section 3 — About me */}
+        <AboutSection />
+
+        {/* Section 4 — Pujas I do at home */}
         <PujaServicesPreview />
 
-        {/* Trust & Local Proof Section */}
-        <TrustSection />
+        {/* Section 5 — How a puja with me goes */}
+        <HowItGoesSection />
 
-        {/* Reviews from real families */}
+        {/* Section 6 — Kundli & astrology */}
+        <KundliSection />
+
+        {/* Section 7 — What families say */}
         <ReviewsSection />
 
-        {/* FAQ Section */}
+        {/* Section 8 — You don't have to book to talk to me */}
+        <TalkFirstSection />
+
+        {/* Section 9 — FAQ */}
         <FAQSection
           title="Frequently Asked Questions"
-          subtitle="Find answers to common questions about our services"
           faqs={HOME_FAQS}
+          className="bg-ivory-dark"
         />
+
+        {/* Section 10 — Closing CTA band */}
+        <ClosingCTA />
       </article>
     </>
   );

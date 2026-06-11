@@ -55,6 +55,19 @@ export const WA_TEMPLATES = {
   generic: () =>
     "Namaste Pandit Ji, I'd like to discuss a puja. Please guide me.",
 
+  // Landing-page templates (build sheet v2)
+  general: () =>
+    "Namaste Pandit Jee, I would like to book a puja/consultation. Please guide me.",
+
+  bookPuja: (pujaName: string) =>
+    `Namaste Pandit Jee, I would like to book the ${pujaName}. Please share the muhurat and details.`,
+
+  kundli: () =>
+    "Namaste Pandit Jee, I would like to ask about my kundli.",
+
+  askFirst: () =>
+    "Namaste Pandit Jee, I have a question before booking. Please guide me.",
+
   hero: () =>
     "Namaste Pandit Ji, I'd like to plan my home mandir and puja setup. Please guide me.",
 

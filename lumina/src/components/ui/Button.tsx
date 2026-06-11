@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "outline" | "ghost";
+  variant?: "primary" | "secondary" | "brass" | "outline" | "ghost";
   size?: "sm" | "md" | "lg";
   asChild?: boolean;
 }
@@ -15,6 +15,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const variants = {
       primary: "bg-saffron text-white hover:bg-saffron-dark shadow-md hover:shadow-lg",
       secondary: "bg-accent text-white hover:bg-accent-light shadow-md hover:shadow-lg",
+      brass: "bg-gold text-white hover:bg-gold-dark shadow-md hover:shadow-lg",
       outline:
         "border-2 border-saffron text-saffron hover:bg-saffron hover:text-white",
       ghost: "text-charcoal hover:bg-muted/50",
@@ -41,7 +42,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = "Button";
 
 interface LinkButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  variant?: "primary" | "secondary" | "outline" | "ghost";
+  variant?: "primary" | "secondary" | "brass" | "outline" | "ghost";
   size?: "sm" | "md" | "lg";
 }
 
@@ -53,6 +54,7 @@ export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
     const variants = {
       primary: "bg-saffron text-white hover:bg-saffron-dark shadow-md hover:shadow-lg",
       secondary: "bg-accent text-white hover:bg-accent-light shadow-md hover:shadow-lg",
+      brass: "bg-gold text-white hover:bg-gold-dark shadow-md hover:shadow-lg",
       outline:
         "border-2 border-saffron text-saffron hover:bg-saffron hover:text-white",
       ghost: "text-charcoal hover:bg-muted/50",

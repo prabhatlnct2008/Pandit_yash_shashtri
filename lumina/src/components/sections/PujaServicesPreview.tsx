@@ -1,25 +1,11 @@
-import Link from "next/link";
-import { ArrowRight, Home, Heart, Sparkles, Users } from "lucide-react";
-import { Card, CardTitle, CardDescription } from "@/components/ui/Card";
+import Image from "next/image";
+import { ArrowRight, Clock, HelpCircle } from "lucide-react";
 import { LinkButton } from "@/components/ui/Button";
-import { PUJA_SERVICES, SITE_CONFIG } from "@/lib/constants";
+import { HOME_PUJA_CARDS, SITE_CONFIG } from "@/lib/constants";
 import { getWhatsAppLink } from "@/lib/utils";
-
-const categoryIcons: Record<string, React.ReactNode> = {
-  Home: <Home className="w-5 h-5" />,
-  Devotional: <Heart className="w-5 h-5" />,
-  Shiva: <Sparkles className="w-5 h-5" />,
-  Wedding: <Users className="w-5 h-5" />,
-  Sanskar: <Users className="w-5 h-5" />,
-  Health: <Heart className="w-5 h-5" />,
-  Astrology: <Sparkles className="w-5 h-5" />,
-  Remedy: <Sparkles className="w-5 h-5" />,
-  Custom: <Sparkles className="w-5 h-5" />,
-};
+import { WA_TEMPLATES } from "@/lib/whatsappTemplates";
 
 export function PujaServicesPreview() {
-  const featuredServices = PUJA_SERVICES.slice(0, 6);
-
   return (
     <section
       className="py-16 md:py-24 bg-ivory-dark"
@@ -32,68 +18,70 @@ export function PujaServicesPreview() {
             id="puja-services-heading"
             className="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-4"
           >
-            Puja Services at Your Home
+            Pujas I do at home
           </h2>
-          <p className="text-lg text-charcoal/70 leading-relaxed">
-            Traditional Vedic rituals performed with shuddh vidhi at your home,
-            society, office, or temple. Every ceremony conducted with devotion
-            and precision.
+          <p className="text-lg text-charcoal/70 leading-relaxed italic">
+            At your home, your society hall, your office, the mandir. Wherever
+            you need. If yours is not here, just ask — I do many more.
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-          {featuredServices.map((service) => (
-            <Card
-              key={service.id}
-              variant="bordered"
-              className="hover:border-gold hover:shadow-md transition-all duration-300"
+        {/* Service Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {HOME_PUJA_CARDS.map((puja) => (
+            <article
+              key={puja.id}
+              className="bg-white rounded-2xl border border-muted overflow-hidden shadow-sm hover:border-gold hover:shadow-md transition-all duration-300 flex flex-col"
             >
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-saffron/10 flex items-center justify-center text-saffron flex-shrink-0">
-                  {categoryIcons[service.category] || (
-                    <Sparkles className="w-5 h-5" />
-                  )}
-                </div>
-                <div>
-                  <CardTitle className="text-lg mb-2">{service.name}</CardTitle>
-                  <CardDescription className="text-sm line-clamp-2">
-                    {service.description}
-                  </CardDescription>
-                  <p className="text-xs text-gold mt-2 font-medium">
-                    {service.duration}
-                  </p>
-                </div>
+              <div className="relative aspect-[4/3]">
+                <Image
+                  src={puja.image}
+                  alt={puja.alt}
+                  fill
+                  sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
+                  className="object-cover"
+                />
               </div>
-            </Card>
+              <div className="p-6 flex flex-col flex-grow">
+                <div className="flex items-start justify-between gap-3 mb-3">
+                  <h3 className="font-heading text-xl font-semibold text-charcoal">
+                    {puja.name}
+                  </h3>
+                  <span className="inline-flex items-center gap-1 text-xs font-medium text-gold whitespace-nowrap mt-1.5">
+                    <Clock className="w-3.5 h-3.5" aria-hidden="true" />
+                    {puja.duration}
+                  </span>
+                </div>
+                <p className="text-sm text-charcoal/70 leading-relaxed mb-6 flex-grow">
+                  {puja.description}
+                </p>
+                <LinkButton
+                  href={getWhatsAppLink(
+                    SITE_CONFIG.contact.primaryPhone,
+                    WA_TEMPLATES.bookPuja(puja.waName)
+                  )}
+                  variant="brass"
+                  size="sm"
+                  className="w-full"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Book this puja
+                </LinkButton>
+              </div>
+            </article>
           ))}
         </div>
 
-        {/* Location Options */}
-        <div className="text-center mb-8">
-          <p className="text-charcoal/70 mb-2">
-            <strong>Puja Locations:</strong> Home • Society • Office • Temple
-          </p>
-        </div>
-
-        {/* CTAs */}
+        {/* Section CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link href="/puja-services">
-            <LinkButton variant="primary">
-              View All Puja Services
-              <ArrowRight className="w-4 h-4" />
-            </LinkButton>
-          </Link>
-          <LinkButton
-            href={getWhatsAppLink(
-              SITE_CONFIG.contact.primaryPhone,
-              "Hello, I would like to schedule a puja with Pandit Ji."
-            )}
-            variant="outline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Schedule a Puja
+          <LinkButton href="/puja-services" variant="primary">
+            View all puja services
+            <ArrowRight className="w-4 h-4" />
+          </LinkButton>
+          <LinkButton href="/ask-pandit-ji" variant="outline">
+            <HelpCircle className="w-4 h-4" />
+            Not sure which puja? Ask Pandit Jee
           </LinkButton>
         </div>
       </div>
