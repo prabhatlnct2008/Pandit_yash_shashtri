@@ -30,7 +30,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden min-h-[78vh] md:min-h-[85vh] flex">
       {/* Background video with poster fallback and maroon scrim */}
       <div className="absolute inset-0" aria-hidden="true">
         <Image
@@ -53,33 +53,28 @@ export function Hero() {
         >
           <source src="/videos/havan-flame-loop.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-t from-saffron-dark/95 via-saffron/65 to-charcoal/35" />
+        <div className="absolute inset-0 bg-gradient-to-t from-saffron-dark/95 via-saffron/55 to-charcoal/25" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 lg:py-40">
-        <div className="max-w-3xl">
+      {/* Content anchored to the lower-left third, over the darkest part of the scrim */}
+      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end pt-28 pb-16 md:pb-24">
+        <div className="max-w-2xl">
           {/* Kicker */}
-          <p className="text-gold-light font-medium text-sm md:text-base tracking-wide mb-5 animate-fade-in">
+          <p className="text-gold-light font-medium text-sm md:text-base tracking-wide mb-4 animate-fade-in">
             🟢 Available across South Delhi &amp; Gurgaon · Home · Society ·
             Office · Temple · Google-rated
           </p>
 
-          {/* Headline */}
-          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-ivory leading-tight mb-6 animate-fade-in">
-            Get your puja done by a Pandit jee who becomes your family&rsquo;s
-            own.
+          {/* Bilingual headline: Hindi main line, English smaller below */}
+          <h1 className="font-heading font-bold text-ivory leading-tight mb-8 animate-fade-in">
+            <span lang="hi" className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+              आपके परिवार के अपने पंडित जी
+            </span>
+            <span className="block mt-3 text-base sm:text-lg md:text-xl font-medium text-ivory/85 font-body">
+              Your family&rsquo;s own Pandit jee — for this puja, and every one
+              after.
+            </span>
           </h1>
-
-          {/* Subhead */}
-          <p className="text-lg md:text-xl text-ivory/90 leading-relaxed mb-4 max-w-2xl">
-            For your home&rsquo;s important moments, you don&rsquo;t want a new
-            face every time. You want one Pandit jee — who knows your family,
-            does every vidhi properly, and is there for the next puja too.
-          </p>
-          <p className="text-lg md:text-xl text-ivory/90 leading-relaxed mb-10 max-w-2xl">
-            I am Pandit Yash Shastri. Tell me the puja and the date. I&rsquo;ll
-            share an auspicious muhurat and a clear price, and we begin.
-          </p>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
