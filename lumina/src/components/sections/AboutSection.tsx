@@ -12,7 +12,7 @@ export function AboutSection() {
           <div className="md:col-span-2">
             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg max-w-sm mx-auto md:mx-0">
               <Image
-                src="/images/pandit-yash-shastri-mehrauli-portrait.jpg"
+                src="/images/pandit-yash-shastri-mehrauli-portrait.jpg?v=2"
                 alt="Pandit Yash Shastri, home puja Pandit jee and astrologer in Mehrauli, South Delhi."
                 fill
                 sizes="(max-width: 768px) 90vw, 40vw"

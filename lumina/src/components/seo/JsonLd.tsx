@@ -19,7 +19,7 @@ export function LocalBusinessSchema() {
     "@type": "LocalBusiness",
     "@id": `${SITE_CONFIG.url}/#localbusiness`,
     name: SITE_CONFIG.name,
-    image: `${SITE_CONFIG.url}/images/pandit-yash-shastri.jpg`,
+    image: `${SITE_CONFIG.url}/images/pandit-yash-shastri-mehrauli-portrait.jpg`,
     description: SITE_CONFIG.description,
     url: SITE_CONFIG.url,
     telephone: `+91-${SITE_CONFIG.contact.primaryPhone}`,

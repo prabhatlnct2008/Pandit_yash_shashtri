@@ -10,7 +10,7 @@ export function HowItGoesSection() {
       {/* Full-width image band */}
       <div className="relative h-56 md:h-72 lg:h-80">
         <Image
-          src="/images/home-puja-mandap-brass-thali-setup.jpg"
+          src="/images/home-puja-mandap-brass-thali-setup.jpg?v=2"
           alt="A complete home puja setup with brass thali, kalash, marigold and diyas."
           fill
           sizes="100vw"

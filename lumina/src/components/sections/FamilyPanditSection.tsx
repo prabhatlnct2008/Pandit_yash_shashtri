@@ -6,7 +6,7 @@ export function FamilyPanditSection() {
       {/* Image band */}
       <div className="relative h-56 md:h-72 lg:h-80">
         <Image
-          src="/images/home-puja-diya-threshold-welcome.jpg"
+          src="/images/home-puja-diya-threshold-welcome.jpg?v=2"
           alt="A lit brass diya welcoming a puja at the threshold of a South Delhi home."
           fill
           sizes="100vw"

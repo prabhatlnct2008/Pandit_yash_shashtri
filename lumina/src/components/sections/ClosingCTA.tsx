@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ExternalLink, MapPin, Phone } from "lucide-react";
 import { LinkButton } from "@/components/ui/Button";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -7,10 +8,21 @@ import { WA_TEMPLATES } from "@/lib/whatsappTemplates";
 export function ClosingCTA() {
   return (
     <section
-      className="py-16 md:py-24 bg-saffron text-ivory"
+      className="bg-saffron text-ivory"
       aria-labelledby="closing-cta-heading"
     >
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* Marigold toran band */}
+      <div className="relative h-40 md:h-56">
+        <Image
+          src="/images/marigold-toran-doorway-puja-invitation.jpg?v=2"
+          alt="A marigold toran across a doorway, ready to welcome a puja."
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+      </div>
+
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
         <h2
           id="closing-cta-heading"
           className="font-heading text-3xl md:text-4xl font-bold text-ivory mb-8"
