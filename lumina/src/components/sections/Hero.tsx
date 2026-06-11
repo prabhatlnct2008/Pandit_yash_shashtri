@@ -41,6 +41,8 @@ export function Hero() {
           sizes="100vw"
           className="object-cover"
         />
+        {/* No poster attr: the optimized <Image> behind the video already
+            serves as the placeholder, avoiding a duplicate raw-JPEG fetch */}
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover motion-reduce:hidden"
@@ -49,7 +51,6 @@ export function Hero() {
           loop
           playsInline
           preload="metadata"
-          poster={HERO_POSTER}
         >
           <source src="/videos/havan-flame-loop.mp4" type="video/mp4" />
         </video>
