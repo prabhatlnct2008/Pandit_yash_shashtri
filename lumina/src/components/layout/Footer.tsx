@@ -13,9 +13,13 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand & Contact */}
           <div className="lg:col-span-1">
-            <h3 className="font-heading text-2xl font-bold text-gold mb-4">
+            <h3 className="font-heading text-2xl font-bold text-gold mb-1">
               {SITE_CONFIG.name}
             </h3>
+            <p className="text-ivory/70 text-sm mb-4">
+              Pandit Ji Home Puja — home puja, kundli &amp; astrology across
+              South Delhi &amp; Gurgaon
+            </p>
             <address className="not-italic text-ivory/80 space-y-3">
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />

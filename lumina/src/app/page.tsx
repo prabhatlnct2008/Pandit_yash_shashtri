@@ -6,7 +6,6 @@ import { AboutSection } from "@/components/sections/AboutSection";
 import { PujaServicesPreview } from "@/components/sections/PujaServicesPreview";
 import { HowItGoesSection } from "@/components/sections/HowItGoesSection";
 import { KundliSection } from "@/components/sections/KundliSection";
-import { ReviewsSection } from "@/components/sections/ReviewsSection";
 import { TalkFirstSection } from "@/components/sections/TalkFirstSection";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { ClosingCTA } from "@/components/sections/ClosingCTA";
@@ -14,16 +13,25 @@ import { FAQSchema, BreadcrumbSchema, WebPageSchema } from "@/components/seo/Jso
 import { HOME_FAQS, SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Pandit & Astrologer in South Delhi & Gurgaon | Pandit Yash Shastri",
+  title:
+    "Pandit Ji Home Puja in South Delhi & Gurgaon | Pandit Yash Shastri",
   description:
-    "Get your puja done by a Pandit jee who becomes your family's own. Home puja, kundli & astrology across South Delhi & Gurgaon. Clear price, all samagri, the same Pandit jee every time.",
+    "Pandit Ji Home Puja by Pandit Yash Shastri — book home puja, kundli & astrology across South Delhi & Gurgaon. The same Pandit jee every time, a clear price, all samagri brought.",
+  keywords: [
+    "pandit ji home puja",
+    "panditjeehomepuja",
+    "pandit ji home puja south delhi",
+    "home puja pandit gurgaon",
+    "pandit yash shastri",
+  ],
   alternates: {
     canonical: SITE_CONFIG.url,
   },
   openGraph: {
-    title: "Pandit & Astrologer in South Delhi & Gurgaon | Pandit Yash Shastri",
+    title:
+      "Pandit Ji Home Puja in South Delhi & Gurgaon | Pandit Yash Shastri",
     description:
-      "Get your puja done by a Pandit jee who becomes your family's own. Home puja, kundli & astrology across South Delhi & Gurgaon.",
+      "Pandit Ji Home Puja by Pandit Yash Shastri — home puja, kundli & astrology across South Delhi & Gurgaon. The same Pandit jee every time.",
     url: SITE_CONFIG.url,
     type: "website",
   },
@@ -34,8 +42,8 @@ export default function HomePage() {
     <>
       {/* Schema Markup */}
       <WebPageSchema
-        title="Pandit & Astrologer in South Delhi & Gurgaon"
-        description="Get your puja done by a Pandit jee who becomes your family's own. Home puja, kundli & astrology across South Delhi & Gurgaon."
+        title="Pandit Ji Home Puja in South Delhi & Gurgaon"
+        description="Pandit Ji Home Puja by Pandit Yash Shastri — home puja, kundli & astrology across South Delhi & Gurgaon. The same Pandit jee every time."
         url={SITE_CONFIG.url}
       />
       <BreadcrumbSchema items={[{ name: "Home", url: SITE_CONFIG.url }]} />
@@ -64,8 +72,9 @@ export default function HomePage() {
         {/* Section 6 — Kundli & astrology */}
         <KundliSection />
 
-        {/* Section 7 — What families say */}
-        <ReviewsSection />
+        {/* Section 7 — What families say: the site-wide ReviewWidget
+            (rendered in the root layout before the footer) covers reviews
+            on the home page and every other page. */}
 
         {/* Section 8 — You don't have to book to talk to me */}
         <TalkFirstSection />

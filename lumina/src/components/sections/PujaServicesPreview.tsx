@@ -21,7 +21,8 @@ export function PujaServicesPreview() {
             Pujas I do at home
           </h2>
           <p className="text-lg text-charcoal/70 leading-relaxed italic">
-            At your home, your society hall, your office, the mandir. Wherever
+            These are the pujas families book most through Pandit Ji Home Puja —
+            at your home, your society hall, your office, the mandir. Wherever
             you need. If yours is not here, just ask — I do many more.
           </p>
         </div>

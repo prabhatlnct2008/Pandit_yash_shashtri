@@ -1,10 +1,15 @@
 export const SITE_CONFIG = {
   name: "Pandit Yash Shastri",
+  alternateName: "Pandit Ji Home Puja",
   description:
-    "Trusted Pandit and Astrologer in South Delhi & Gurgaon. Quick astrology consultation, home puja, muhurat guidance & Vedic rituals.",
+    "Pandit Ji Home Puja by Pandit Yash Shastri — trusted home puja, kundli & astrology across South Delhi & Gurgaon. The same Pandit jee every time, clear price, all samagri brought.",
   url: "https://www.panditjeehomepuja.in",
   googleBusinessProfile: "https://share.google/7zlaYzGkyVLNZYd7w",
   googleMapsLink: "https://maps.app.goo.gl/wGvusMo96wdbJLgq5",
+  // Google Place ID for the verified Google Business Profile
+  // (Pandit ji Yash Shastri Home Puja, Mehrauli). Used to fetch live
+  // reviews and the aggregate rating without a fragile text search.
+  googlePlaceId: "ChIJK-XqUmsfDTkRHxoTZMC5roE",
   temple: {
     name: "Shiv Shakti Mandir",
     address: "Ward No. 6, Gandhi Colony, Mehrauli",
@@ -26,6 +31,25 @@ export const SITE_CONFIG = {
     longitude: 77.1855,
   },
 };
+
+// Localities Pandit Ji Home Puja serves, used for the LocalBusiness
+// `areaServed` schema and service-area copy. Keep broad cities first.
+export const AREA_SERVED = [
+  "South Delhi",
+  "Gurgaon",
+  "Delhi NCR",
+  "Chhatarpur",
+  "Mehrauli",
+  "Green Park",
+  "Hauz Khas",
+  "Greater Kailash",
+  "Panchsheel Enclave",
+  "Lajpat Nagar",
+  "AIIMS Delhi",
+  "Saket",
+  "Vasant Kunj",
+  "Defence Colony",
+];
 
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -225,7 +249,7 @@ export const CONSULTATION_TYPES = [
 
 // Fallback reviews used when GOOGLE_PLACES_API_KEY is unset, the API call
 // fails, or returns no reviews. With the API key configured in Vercel,
-// ReviewsSection fetches live reviews and these are not displayed.
+// the ReviewWidget fetches live reviews and these are not displayed.
 // Index 0 (Kushagra Bhardwaj) is a real review captured from the GBP;
 // the rest are placeholder samples — replace or remove as more real
 // reviews become available.

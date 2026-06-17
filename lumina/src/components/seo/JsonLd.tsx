@@ -1,4 +1,4 @@
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, AREA_SERVED } from "@/lib/constants";
 
 interface JsonLdProps {
   data: object;
@@ -13,12 +13,19 @@ export function JsonLd({ data }: JsonLdProps) {
   );
 }
 
-export function LocalBusinessSchema() {
+interface LocalBusinessSchemaProps {
+  aggregateRating?: { ratingValue: number; reviewCount: number };
+}
+
+export function LocalBusinessSchema({
+  aggregateRating,
+}: LocalBusinessSchemaProps = {}) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": `${SITE_CONFIG.url}/#localbusiness`,
     name: SITE_CONFIG.name,
+    alternateName: SITE_CONFIG.alternateName,
     image: `${SITE_CONFIG.url}/images/pandit-yash-shastri-mehrauli-portrait.jpg`,
     description: SITE_CONFIG.description,
     url: SITE_CONFIG.url,
@@ -36,10 +43,18 @@ export function LocalBusinessSchema() {
       latitude: SITE_CONFIG.geo.latitude,
       longitude: SITE_CONFIG.geo.longitude,
     },
-    areaServed: [
-      { "@type": "City", name: "South Delhi" },
-      { "@type": "City", name: "Gurgaon" },
-    ],
+    areaServed: AREA_SERVED.map((name) => ({ "@type": "City", name })),
+    ...(aggregateRating
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: aggregateRating.ratingValue,
+            reviewCount: aggregateRating.reviewCount,
+            bestRating: 5,
+            worstRating: 1,
+          },
+        }
+      : {}),
     priceRange: "$$",
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",

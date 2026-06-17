@@ -37,7 +37,8 @@ export function ClosingCTA() {
           </p>
           <p>
             Do this once, and if it feels right, I would be honoured to become
-            your family&rsquo;s Pandit jee for the years ahead.
+            your family&rsquo;s Pandit jee for the years ahead — that is what
+            Pandit Ji Home Puja is meant to be.
           </p>
         </div>
 

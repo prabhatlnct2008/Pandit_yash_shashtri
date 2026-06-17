@@ -3,7 +3,9 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { StickyMobileCTA } from "@/components/layout/StickyMobileCTA";
 import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
+import { ReviewWidget } from "@/components/sections/ReviewWidget";
 import { LocalBusinessSchema, PersonSchema } from "@/components/seo/JsonLd";
+import { fetchReviewSummary } from "@/lib/googleReviews";
 import { SITE_CONFIG } from "@/lib/constants";
 import "./globals.css";
 
@@ -82,11 +84,13 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const summary = await fetchReviewSummary();
+
   return (
     <html lang="en">
       <head>
@@ -101,12 +105,20 @@ export default function RootLayout({
           rel="stylesheet"
         />
         {/* Global Schema Markup */}
-        <LocalBusinessSchema />
+        <LocalBusinessSchema
+          aggregateRating={
+            summary
+              ? { ratingValue: summary.rating, reviewCount: summary.count }
+              : undefined
+          }
+        />
         <PersonSchema />
       </head>
       <body className="font-body antialiased bg-ivory text-charcoal min-h-screen flex flex-col">
         <Header />
         <main className="flex-grow pb-16 sm:pb-0">{children}</main>
+        {/* Site-wide review widget — reviews visible on every page */}
+        <ReviewWidget />
         <Footer />
         <StickyMobileCTA />
         <FloatingWhatsApp />
