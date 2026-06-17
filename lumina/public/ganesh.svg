@@ -1,0 +1,37 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lord Ganesha">
+  <!-- Brand emblem: stylised Shree Ganesha in sandalwood ivory, deep maroon and brass gold -->
+  <circle cx="50" cy="50" r="48" fill="#FAF4E8"/>
+  <circle cx="50" cy="50" r="48" fill="none" stroke="#B8862F" stroke-width="3"/>
+
+  <!-- Ears (behind the head) -->
+  <path d="M31 38 Q9 35 11 56 Q13 73 33 65 Z" fill="#7A1E1E"/>
+  <path d="M69 38 Q91 35 89 56 Q87 73 67 65 Z" fill="#7A1E1E"/>
+  <path d="M27 44 Q15 47 17 58 Q19 67 30 61 Z" fill="#B8862F" opacity="0.45"/>
+  <path d="M73 44 Q85 47 83 58 Q81 67 70 61 Z" fill="#B8862F" opacity="0.45"/>
+
+  <!-- Head -->
+  <ellipse cx="50" cy="50" rx="22" ry="23" fill="#7A1E1E"/>
+
+  <!-- Mukut / crown -->
+  <path d="M36 28 Q50 14 64 28 L59 31 Q50 23 41 31 Z" fill="#B8862F"/>
+  <path d="M50 6 L44.5 17 H55.5 Z" fill="#B8862F"/>
+  <circle cx="50" cy="6" r="2.6" fill="#B8862F"/>
+
+  <!-- Tilak -->
+  <path d="M50 31 V44" stroke="#B8862F" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="50" cy="30" r="2" fill="#B8862F"/>
+
+  <!-- Eyes -->
+  <circle cx="42" cy="48" r="2.4" fill="#FAF4E8"/>
+  <circle cx="58" cy="48" r="2.4" fill="#FAF4E8"/>
+
+  <!-- Trunk, curving to a modak -->
+  <path d="M50 57 Q50 79 38 85 Q30 89 34 95" fill="none" stroke="#7A1E1E" stroke-width="9" stroke-linecap="round"/>
+
+  <!-- Tusks -->
+  <path d="M44 67 L40 75" stroke="#FAF4E8" stroke-width="3" stroke-linecap="round"/>
+  <path d="M58 65 L62 73" stroke="#FAF4E8" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Modak (sweet) held in the trunk -->
+  <circle cx="34" cy="93" r="4" fill="#B8862F"/>
+</svg>
