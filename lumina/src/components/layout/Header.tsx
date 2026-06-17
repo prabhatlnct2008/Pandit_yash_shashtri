@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
 import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 import { cn, getPhoneLink, getWhatsAppLink } from "@/lib/utils";
@@ -15,12 +16,23 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo / Brand */}
-          <Link href="/" className="flex flex-col">
-            <span className="font-heading text-xl md:text-2xl font-bold text-saffron">
-              {SITE_CONFIG.name}
-            </span>
-            <span className="text-xs text-charcoal/60 hidden sm:block">
-              Pandit Ji Home Puja • South Delhi & Gurgaon
+          <Link href="/" className="flex items-center gap-2.5">
+            <Image
+              src="/ganesh.svg"
+              alt="Shree Ganesha — Pandit Yash Shastri"
+              width={44}
+              height={44}
+              className="w-9 h-9 md:w-11 md:h-11 flex-shrink-0"
+              unoptimized
+              priority
+            />
+            <span className="flex flex-col">
+              <span className="font-heading text-xl md:text-2xl font-bold text-saffron leading-tight">
+                {SITE_CONFIG.name}
+              </span>
+              <span className="text-xs text-charcoal/60 hidden sm:block">
+                Pandit Ji Home Puja • South Delhi & Gurgaon
+              </span>
             </span>
           </Link>
 

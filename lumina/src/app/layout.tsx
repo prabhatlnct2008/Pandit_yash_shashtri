@@ -94,8 +94,9 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" type="image/svg+xml" href="/ganesh.svg" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" href="/ganesh.svg" />
         <link rel="manifest" href="/manifest.json" />
         {/* Google Fonts via link tags for reliable loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
