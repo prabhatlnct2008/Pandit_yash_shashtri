@@ -5,6 +5,7 @@ import { MapPin, Phone, Sparkles, Check, ArrowRight, Star } from "lucide-react";
 import { Card, CardTitle, CardDescription } from "@/components/ui/Card";
 import { LinkButton } from "@/components/ui/Button";
 import { FAQSection } from "@/components/sections/FAQSection";
+import { ServiceAreaMap } from "@/components/sections/ServiceAreaMap";
 import { FAQSchema, BreadcrumbSchema, WebPageSchema, JsonLd } from "@/components/seo/JsonLd";
 import { SITE_CONFIG, PUJA_SERVICES } from "@/lib/constants";
 import { LOCATIONS, getLocationBySlug, getAllLocationSlugs } from "@/lib/locations";
@@ -60,24 +61,32 @@ export default async function LocationPage({ params }: PageProps) {
     )
   ).slice(0, 3);
 
+  // Areas served by this location page: the locality itself plus its
+  // nearby areas, so each service-area page reinforces local-search reach.
+  const nearbyNames = location.nearbyAreas
+    .map((a) => getLocationBySlug(a.slug)?.name)
+    .filter((n): n is string => Boolean(n));
+
   // Create location-specific schema
   const locationSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: `${SITE_CONFIG.name} - ${location.name}`,
+    alternateName: `${SITE_CONFIG.alternateName} ${location.name}`,
     description: location.description,
+    image: `${SITE_CONFIG.url}/images/pandit-yash-shastri-mehrauli-portrait.jpg`,
     address: {
       "@type": "PostalAddress",
       addressLocality: location.name,
       addressRegion: location.slug === "gurgaon" ? "Haryana" : "New Delhi",
       addressCountry: "IN",
     },
-    areaServed: {
-      "@type": "City",
-      name: location.fullName,
-    },
+    areaServed: [location.fullName, location.name, ...nearbyNames].map(
+      (name) => ({ "@type": "City", name })
+    ),
     telephone: `+91-${SITE_CONFIG.contact.primaryPhone}`,
     url: `${SITE_CONFIG.url}/pandit/${location.slug}`,
+    parentOrganization: { "@id": `${SITE_CONFIG.url}/#localbusiness` },
   };
 
   return (
@@ -292,6 +301,9 @@ export default async function LocationPage({ params }: PageProps) {
             )}
           </div>
         </section>
+
+        {/* Service-area map (conditional per location) */}
+        <ServiceAreaMap areaName={location.name} areaLabel={location.fullName} />
 
         {/* Trust Section */}
         <section className="py-16 bg-white">

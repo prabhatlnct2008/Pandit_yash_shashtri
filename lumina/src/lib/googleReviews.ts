@@ -1,4 +1,4 @@
-import { REVIEWS } from "@/lib/constants";
+import { REVIEWS, SITE_CONFIG } from "@/lib/constants";
 
 export interface GoogleReview {
   author: string;
@@ -7,6 +7,12 @@ export interface GoogleReview {
   text: string;
   area?: string;
   profilePhotoUrl?: string;
+  source: "google" | "fallback";
+}
+
+export interface ReviewSummary {
+  rating: number;
+  count: number;
   source: "google" | "fallback";
 }
 
@@ -36,6 +42,13 @@ interface PlacesV1PlaceResponse {
 
 const PLACE_QUERY = "Pandit ji Yash Shastri Home Puja Mehrauli";
 const REVALIDATE_SECONDS = 21600; // refresh reviews every 6 hours
+
+// Prefer the verified Place ID; fall back to a text search only if it is
+// somehow missing. A fixed Place ID avoids the search returning the wrong
+// listing as Google's index shifts.
+async function resolvePlaceId(apiKey: string): Promise<string | null> {
+  return SITE_CONFIG.googlePlaceId || (await findPlaceId(apiKey));
+}
 
 const FALLBACK_REVIEWS: GoogleReview[] = REVIEWS.map((r) => ({
   author: r.author,
@@ -69,10 +82,10 @@ async function findPlaceId(apiKey: string): Promise<string | null> {
   }
 }
 
-async function fetchPlaceReviews(
+async function fetchPlace(
   apiKey: string,
   placeId: string
-): Promise<PlacesV1Review[]> {
+): Promise<PlacesV1PlaceResponse | null> {
   try {
     const res = await fetch(
       `https://places.googleapis.com/v1/places/${placeId}`,
@@ -84,11 +97,10 @@ async function fetchPlaceReviews(
         next: { revalidate: REVALIDATE_SECONDS },
       }
     );
-    if (!res.ok) return [];
-    const data = (await res.json()) as PlacesV1PlaceResponse;
-    return data.reviews ?? [];
+    if (!res.ok) return null;
+    return (await res.json()) as PlacesV1PlaceResponse;
   } catch {
-    return [];
+    return null;
   }
 }
 
@@ -108,16 +120,7 @@ function formatDate(review: PlacesV1Review): string {
   return "";
 }
 
-export async function fetchGoogleReviews(): Promise<GoogleReview[]> {
-  const apiKey = process.env.GOOGLE_PLACES_API_KEY;
-  if (!apiKey) return FALLBACK_REVIEWS;
-
-  const placeId = await findPlaceId(apiKey);
-  if (!placeId) return FALLBACK_REVIEWS;
-
-  const raw = await fetchPlaceReviews(apiKey, placeId);
-  if (raw.length === 0) return FALLBACK_REVIEWS;
-
+function mapReviews(raw: PlacesV1Review[]): GoogleReview[] {
   return raw
     .map<GoogleReview>((r) => ({
       author: r.authorAttribution?.displayName ?? "Google user",
@@ -128,4 +131,36 @@ export async function fetchGoogleReviews(): Promise<GoogleReview[]> {
       source: "google",
     }))
     .filter((r) => r.text.trim().length > 0);
+}
+
+export async function fetchGoogleReviews(): Promise<GoogleReview[]> {
+  const apiKey = process.env.GOOGLE_PLACES_API_KEY;
+  if (!apiKey) return FALLBACK_REVIEWS;
+
+  const placeId = await resolvePlaceId(apiKey);
+  if (!placeId) return FALLBACK_REVIEWS;
+
+  const place = await fetchPlace(apiKey, placeId);
+  const reviews = mapReviews(place?.reviews ?? []);
+  return reviews.length > 0 ? reviews : FALLBACK_REVIEWS;
+}
+
+// Aggregate rating + count for the on-page review widget and the
+// LocalBusiness `aggregateRating` schema. Returns null when no live data is
+// available, so we never emit a fabricated rating from placeholder reviews.
+export async function fetchReviewSummary(): Promise<ReviewSummary | null> {
+  const apiKey = process.env.GOOGLE_PLACES_API_KEY;
+  if (!apiKey) return null;
+
+  const placeId = await resolvePlaceId(apiKey);
+  if (!placeId) return null;
+
+  const place = await fetchPlace(apiKey, placeId);
+  if (!place?.rating || !place.userRatingCount) return null;
+
+  return {
+    rating: place.rating,
+    count: place.userRatingCount,
+    source: "google",
+  };
 }

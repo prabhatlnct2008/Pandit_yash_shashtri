@@ -31,8 +31,9 @@ export function AboutSection() {
             </h2>
             <div className="space-y-5 text-lg text-charcoal/80 leading-relaxed">
               <p>
-                I sit at Shiv Shakti Mandir, in Mehrauli. This work is most of
-                my life.
+                I sit at Shiv Shakti Mandir, in Mehrauli, and families across
+                South Delhi and Gurgaon know me as Pandit Ji Home Puja. This
+                work is most of my life.
               </p>
               <p>
                 Here is what I would want you to know before you decide

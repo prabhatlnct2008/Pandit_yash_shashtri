@@ -20,7 +20,7 @@ export function Header() {
               {SITE_CONFIG.name}
             </span>
             <span className="text-xs text-charcoal/60 hidden sm:block">
-              Vedic guidance • Trusted locally • Personal consultation
+              Pandit Ji Home Puja • South Delhi & Gurgaon
             </span>
           </Link>
 
